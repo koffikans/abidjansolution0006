@@ -1,1 +1,1129 @@
-<html><body><h1>Bienvenue sur Abidjan Solution 0006</h1><p>Mon premier projet avec Git et GitHub.</p></body></html>
+<!DOCTYPE html>
+<html ⚡ lang="fr">
+<head>
+    <meta name="amp-consent-blocking" content="amp-ad">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
+    <title>Abidjan Solution - Marketplace Ivoirienne</title>
+    <link rel="canonical" href="https://www.abidjansolution.biz" />
+    <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/favicon.ico?alt=media&token=90d5eacf-f201-40e6-b2c8-8aed141c077d" type="image/x-icon" />
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+	<script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+
+    <style amp-custom>
+        :root { --main-green: #008060; --accent-orange: #f58220; --bg-light: #f1f3f6; }
+        body { font-family: 'Roboto', sans-serif; margin: 0; background: var(--bg-light); color: #333; font-size: 18px; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 15px; }
+
+        /* HEADER RESPONSIVE */
+        header { background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .top-bar { background: var(--main-green); color: white; padding: 10px 0; font-size: 10px; font-weight: 500; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; }
+        .top-bar a { color: white; text-decoration: none; transition: opacity 0.2s; }
+        .top-bar a:hover { opacity: 0.8; text-decoration: underline; }
+        .sell-link-top { font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .header-main { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; gap: 20px; }
+        
+        .search-form { display: flex; border: 2px solid #ddd; border-radius: 30px; overflow: hidden; flex-grow: 1; max-width: 600px; }
+        .search-form input { flex-grow: 1; padding: 12px 20px; border: none; outline: none; }
+        .search-form button { background: var(--accent-orange); color: white; border: none; padding: 0 25px; font-weight: bold; }
+               /* Hero Tab System */
+        .hero-tab-container {
+            margin-top: 20px;
+        }
+        .hero-tab-nav {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-tab-nav .tab-item {
+            position: relative;
+        }
+        .hero-tab-nav .tab-item:not(:first-child) {
+            margin-left: -20px;
+        }
+        .hero-tab-nav .tab-item a {
+            display: block;
+            padding: 12px 30px;
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            color: var(--dark-gray);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .hero-tab-nav .tab-item.active {
+            z-index: 5;
+        }
+        .hero-tab-nav .tab-item.active a {
+            background-color: white;
+            color: var(--accent-orange);
+            padding-bottom: 13px;
+        }
+        .hero-tab-nav .tab-item:not(.active) a:hover {
+            background-color: #e2e6ea;
+        }
+        .hero-tab-content-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            border-top-left-radius: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            background: white;
+        }
+        .hero-tab-content-wrapper .amp-carousel-button {
+            background: var(--accent-orange);
+            border-radius: 50%;
+            opacity: 0.8;
+            transition: background-color .3s ease, opacity .3s ease;
+            width: 44px;
+            height: 44px;
+        }
+        .hero-tab-content-wrapper .amp-carousel-button:hover {
+            background-color: var(--main-green);
+            opacity: 1;
+        }
+        .hero-tab-content-wrapper .amp-carousel-button-prev {
+            left: 1rem;
+        }
+        .hero-tab-content-wrapper .amp-carousel-button-next {
+            right: 1rem;
+        }
+
+         @media (max-width: 767px) {
+            .hero-tab-nav {
+                flex-direction: column; /* Stack tabs vertically */
+                padding-left: 0;
+                margin-left: -15px;  /* Counteract container padding */
+                margin-right: -15px; /* Counteract container padding */
+            }
+            .hero-tab-nav .tab-item {
+                 margin-left: 0; /* Remove horizontal overlap */
+                 width: 100%;
+                 margin-bottom: -1px; /* Collapse vertical borders */
+            }
+             .hero-tab-nav .tab-item a {
+                border-radius: 0;
+                text-align: center;
+                border-bottom: 1px solid var(--border-color); /* Add border to all tabs on mobile */
+             }
+             .hero-tab-nav .tab-item.active a {
+                 border-bottom-color: white; /* Active tab 'merges' with the content pane */
+             }
+            .hero-tab-content-wrapper {
+                 border-top-left-radius: 0; /* Content pane aligns with the full-width tab */
+                 border-top-right-radius: 0;
+             }
+        }
+        
+        /* --- Hero Carousel Slide Overlay --- */
+        .carousel-slide-container {
+            position: relative;
+            line-height: 0; /* Prevents extra space below amp-img */
+        }
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%);
+            color: white;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: opacity 0.3s ease;
+            opacity: 0.9;
+        }
+        .carousel-slide-container:hover .slide-overlay {
+            opacity: 1;
+        }
+        .slide-overlay .slide-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            line-height: 1.3;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        .slide-overlay .slide-price {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--accent-orange);
+            margin: 0 0 15px 0;
+            line-height: 1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .slide-overlay .slide-cta {
+            padding: 8px 18px;
+            background-color: var(--accent-orange);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+        .slide-overlay .slide-cta:hover {
+            background-color: var(--main-green);
+        }
+        @media (max-width: 767px) {
+            .slide-overlay {
+                padding: 15px;
+            }
+            .slide-overlay .slide-title {
+                font-size: 1.1rem;
+            }
+            .slide-overlay .slide-price {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            .slide-overlay .slide-cta {
+                font-size: 0.9rem;
+                padding: 6px 14px;
+            }
+        }
+
+        /* Hero Info Panel */
+        .hero-info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-gray);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .info-item:hover {
+            background-color: var(--main-green);
+            color: white;
+            border-color: var(--main-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .info-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-orange);
+            transition: color 0.3s ease;
+        }
+        .info-item:hover svg {
+            color: white;
+        }
+        @media (max-width: 767px) {
+            .hero-info-panel {
+                justify-content: center;
+            }
+        }
+
+        .main-layout { display: grid; grid-template-columns: 280px 1fr; gap: 25px; margin-top: 20px; }
+        .sidebar-desktop { background: white; border-radius: 12px; border: 1px solid #e0e0e0; }
+        .sidebar-header { background: #fafafa; padding: 20px; border-bottom: 1px solid #eee; font-weight: 800; }
+        .side-nav-link { display: flex; align-items: center; gap: 15px; padding: 12px 20px; text-decoration: none; color: #444; border-bottom: 1px solid #f9f9f9; font-size: 16px; }
+
+        /* === SCROLL HORIZONTAL FIX === */
+        .scrollable-section { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 40px; scrollbar-width: none; }
+        .product-list-horizontal div[role="list"] { display: flex; gap: 15px; flex-wrap: nowrap; padding-bottom: 10px; }
+
+        .p-card { background: white; border-radius: 15px; border: 1px solid #e0e0e0; flex: 0 0 280px; height: 460px; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+        .p-badge { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; color: var(--main-green); z-index: 10; border: 1px solid #eee; }
+        .p-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .p-title { font-size: 16px; font-weight: 800; height: 45px; overflow: hidden; margin: 10px 0; line-height: 1.4; }
+        .p-price { font-size: 20px; font-weight: 900; color: var(--accent-orange); }
+        .btn-action { background: var(--main-green); color: white; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; }
+
+        .section-title { font-size: 24px; font-weight: 900; margin-bottom: 20px; border-left: 6px solid var(--main-green); padding-left: 15px; }
+
+        /* === PACKS WIDE === */
+        .packs-wide-layout div[role="list"] { display: flex; flex-direction: column; gap: 20px; }
+        .p-card-wide { display: flex; background: white; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; height: 300px; }
+        .p-card-wide amp-img { flex: 0 0 450px; }
+        .p-body-wide { padding: 30px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+		
+		 /* Footer */
+        .footer {
+            background: var(--main-green);
+			color: white;
+            padding: 40px 15px;
+            margin-top: 40px;
+        }
+        .footer .container-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .footer .container-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .footer .container-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .footer-about {
+                grid-column: span 2;
+            }
+        }
+        .footer-title {
+            font-size: 18px;
+            color: white;
+            margin: 0 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-orange);
+            display: inline-block;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .footer a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent-orange);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .footer a:hover {
+            color: white;
+        }
+        .footer a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .footer-contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .footer-contact-info svg {
+            flex-shrink: 0;
+            width: 16px;
+            margin-top: 4px;
+            color: var(--accent-orange);
+        }
+        
+        /* --- Floating Social Share --- */
+        .fab-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1008;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+        .fab-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0s 0s;
+        }
+
+        .social-fab-container {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            z-index: 1009;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fab-main-button {
+            background-color: var(--main-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+            position: relative;
+            z-index: 2;
+            margin-top: 15px;
+        }
+
+        .fab-main-button:hover {
+            background-color: var(--accent-orange);
+            transform: scale(1.1);
+        }
+
+        .fab-main-button.expanded {
+            transform: rotate(45deg);
+            background-color: var(--dark-gray);
+        }
+        
+        .fab-main-button.expanded:hover {
+            transform: rotate(45deg) scale(1.1);
+        }
+
+        .fab-main-button svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .social-icon-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-icon-list li {
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            visibility: hidden;
+        }
+
+        .social-icon-list.visible li {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        /* Staggered animation from bottom to top */
+        .social-icon-list.visible li:nth-last-child(1) { transition-delay: 0.04s; }
+        .social-icon-list.visible li:nth-last-child(2) { transition-delay: 0.08s; }
+        .social-icon-list.visible li:nth-last-child(3) { transition-delay: 0.12s; }
+        .social-icon-list.visible li:nth-last-child(4) { transition-delay: 0.16s; }
+        .social-icon-list.visible li:nth-last-child(5) { transition-delay: 0.20s; } /* For future additions */
+        .social-icon-list.visible li:nth-last-child(6) { transition-delay: 0.24s; } /* For future additions */
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+        .social-link:hover {
+            transform: scale(1.15);
+        }
+
+        .social-link.whatsapp { background-color: #25D366; }
+        .social-link.facebook { background-color: #1877F2; }
+        .social-link.tiktok { background-color: #010101; }
+        .social-link.instagram { background: #d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .social-link.twitter { background-color: #14171A; }
+        .social-link.messenger { background-color: #00B2FF; }
+
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        /* Partner Logo Scroller */
+        .partner-logo-wrapper {
+            overflow: hidden;
+            padding: 0.25rem 0;
+            position: relative;
+            width: 100%;
+        }
+        .partner-logo-wrapper::before,
+        .partner-logo-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .partner-logo-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--dark-gray), transparent);
+        }
+        .partner-logo-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--dark-gray), transparent);
+        }
+
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(245, 130, 32, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 15px rgba(245, 130, 32, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(245, 130, 32, 0);
+          }
+        }
+
+        .partner-logo-scroller {
+            display: flex;
+            width: fit-content;
+            animation: scroll 60s linear infinite;
+        }
+
+        .partner-logo-wrapper:hover .partner-logo-scroller {
+            animation-play-state: paused;
+        }
+
+        .partner-logo-scroller amp-img {
+            margin: 0 40px;
+            opacity: 1;
+            transition: transform 0.3s ease;
+            object-fit: contain;
+        }
+
+        .partner-logo-scroller amp-img:hover {
+            transform: scale(1.05);
+        }
+        
+    </style>
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Abidjan Solution",
+      "url": "https://www.abidjansolution.biz",
+      "logo": "https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution_logo1.webp?alt=media&token=70c8f779-d817-46a3-b399-d7c12e3b8fcc",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+225-0707283405",
+        "contactType": "Assistance"
+      },
+      "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Cocody Riviera 3 Lycée Francais Blaise Pascal",
+          "addressLocality": "Abidjan",
+          "addressCountry": "CI"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://www.abidjansolution.biz",
+      "name": "Abidjan Solution",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Abidjan Solution"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.abidjansolution.biz/search.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "name": "Produits en vedette",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": "Broyeuse de Manioc à moteur électrique. État neuf.",
+            "image": "https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/broyeuse-de-manioc-inoc-attieke-abidjansolution300x200.webp?alt=media&token=2f6fd401-5769-49f6-855c-c7c887e85908",
+            "description": "Broyeuse de Manioc à moteur électrique de haute qualité pour la production d'attiéké. Matériel neuf, fabriqué localement par EKKS Entreprise Sari.",
+            "sku": "BROY-MAN-01",
+            "brand": {
+              "@type": "Brand",
+              "name": "EKKS Entreprise Sari"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.abidjansolution.biz/payment.html?name=Broyeuse%20de%20Manioc%20%C3%A0%20moteur%20%C3%A9lectrique.%20%C3%89tat%20neuf.&price=950,000Fcfa",
+              "priceCurrency": "XOF",
+              "price": "950000",
+              "availability": "https://schema.org/InStock",
+              "priceValidUntil": "2025-12-31"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": "Presse à Huile Manuelle Inox",
+            "image": "https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/presse-mobile-huile-de-palme-01-300x200.webp?alt=media&token=fa08ccd4-fbd1-4e6f-96d0-cfd55d435900",
+            "description": "Presse manuelle en inox pour l'extraction d'huile. Robuste et efficace, disponible sur commande.",
+            "sku": "PRESS-HUIL-01",
+            "brand": {
+              "@type": "Brand",
+              "name": "EKKS Entreprise Sari"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.abidjansolution.biz/payment.html?name=Presse%20%C3%A0%20Huile%20Manuelle%20Inox&price=500,000Fcfa",
+              "priceCurrency": "XOF",
+              "price": "500000",
+              "availability": "https://schema.org/PreOrder",
+              "priceValidUntil": "2025-12-31"
+            }
+          }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@type": "Product",
+                "name": "Unité de Production d'Attiéké",
+                "image": "https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution1-usine-complete-attieke-livree-pack-600x400.webp?alt=media&token=87e2190e-a79e-4c7e-bdb6-6a4802345486",
+                "description": "Pack industriel complet pour une unité de production d'attiéké. Équipement de qualité pour démarrer votre activité.",
+                "sku": "PACK-ATK-01",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Pack Industriel"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": "https://www.abidjansolution.biz/payment.html?name=Unit%C3%A9%20de%20Production%20d'Atti%C3%A9k%C3%A9&price=3,100,000Fcfa",
+                    "priceCurrency": "XOF",
+                    "price": "3100000",
+                    "availability": "https://schema.org/InStock"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+                "@type": "Product",
+                "name": "Tracteur Agricole John Deere (Occasion)",
+                "image": "https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/tracteur-agricole1-second-main-120-chevaux-abidjansolution.webp?alt=media&token=68acca82-9986-4427-a749-0f9025836509",
+                "description": "Tracteur agricole de marque John Deere, modèle d'occasion en excellent état. Idéal pour tous vos travaux agricoles.",
+                "sku": "TRACT-JD-01",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "EKKS Entreprise Sari"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": "https://www.abidjansolution.biz/payment.html?name=Tracteur%20Agricole%20John%20Deere%20(Occasion)&price=8,500,000Fcfa",
+                    "priceCurrency": "XOF",
+                    "price": "8500000",
+                    "availability": "https://schema.org/InStock",
+                    "itemCondition": "https://schema.org/UsedCondition"
+                }
+            }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+    <!-- Google Tag Manager & Analytics -->
+    <amp-analytics data-credentials="include">
+        <script type="application/json">
+        {
+          "vars": {
+            "gtm_id": "GTM-T2P4P9B"
+          },
+          "requests": {
+             "pageview": "https://www.googletagmanager.com/gtm.js?id=${gtm_id}&gtm.url=${sourceUrl}"
+          },
+          "triggers": {
+            "pageview": {
+              "on": "visible",
+              "request": "pageview"
+            }
+          }
+        }
+        </script>
+    </amp-analytics>
+    
+    <!-- AMP Consent Configuration -->
+    <amp-consent id="ConsentManager" layout="nodisplay" type="ConsentManager">
+        <script type="application/json"> { "postPromptUI": "postPromptUI", "clientConfig": { "cdid": "e084bff831374", "params": "" } } </script>
+    </amp-consent>
+
+    <!-- AMP States -->
+    <amp-state id="appState">
+        <script type="application/json">
+            {
+                "user": null,
+                "voice": {
+                    "ui": "idle",
+                    "toastMessage": "",
+                    "isToastVisible": false
+                }
+            }
+        </script>
+    </amp-state>
+    <amp-state id="tabCarousel"><script type="application/json">{ "active": "tab1" }</script></amp-state>
+    <amp-state id="socialFabState"><script type="application/json">{ "isOpen": false }</script></amp-state>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <a href="sell.html" class="sell-link-top">Vendez sur abidjansolution</a>
+                <div class="mobile-hide">
+                    <a href="shop.html" style="margin-left: 15px;" class="sell-link-top">Boutique</a>
+                    <a href="delivery.html" style="margin-left: 15px;" class="sell-link-top">Livraison</a>
+                    <a href="onsale.html" style="margin-left: 15px;" class="sell-link-top">Promos</a>
+                    <a href="tel:0707283405" style="margin-left: 15px;" class="sell-link-top">Aide: 0707283405</a>
+                </div>
+            </div>
+        </div>
+        <div class="container header-main">
+            <a href="index.html" class="logo">
+                <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution_logo1.webp?alt=media" width="160" height="50" layout="fixed"></amp-img>
+            </a>
+            <form class="search-form" method="GET" action="search.html" target="_top">
+                <input type="search" name="q" placeholder="Chercher un article..." required>
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="main-layout">
+            <aside class="sidebar-desktop">
+                <div class="sidebar-header">Nos Catégories</div>
+                <amp-list layout="fixed-height" height="500" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getCategories" items="items">
+                    <template type="amp-mustache">
+                        <a href="shop.html?cat={{name}}" class="side-nav-link"><span>{{icon}}</span> {{name}}</a>
+                    </template>
+                </amp-list>
+            </aside>
+        <section>
+            <div class="content-main">
+            <div class="hero-tab-container">
+                        <ul class="hero-tab-nav">
+                            <li class="tab-item" [class]="'tab-item ' + (tabCarousel.active == 'tab1' ? 'active' : '')">
+                                <a on="tap:AMP.setState({tabCarousel: {active: 'tab1'}})">Fabrication Locale</a>
+                            </li>
+                            <li class="tab-item" [class]="'tab-item ' + (tabCarousel.active == 'tab2' ? 'active' : '')">
+                                <a on="tap:AMP.setState({tabCarousel: {active: 'tab2'}})">Articles Neufs</a>
+                            </li>
+                            <li class="tab-item" [class]="'tab-item ' + (tabCarousel.active == 'tab3' ? 'active' : '')">
+                                <a on="tap:AMP.setState({tabCarousel: {active: 'tab3'}})">Articles Seconde Main</a>
+                            </li>
+                        </ul>
+                        <div class="hero-tab-content-wrapper">
+                            <div class="hero-tab-content" [hidden]="tabCarousel.active != 'tab1'">
+                                <amp-carousel id="carousel1" width="800" height="450" layout="responsive" type="slides" loop autoplay delay="5000">
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-broyeuse-electrique-simple-unique-800x450.webp?alt=media&token=1e4dc29e-738b-42a4-982b-828a6a4c4792" alt="Broyeuse électrique de fabrication locale" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Broyeuse Électrique de Manioc</h3>
+                                            <p class="slide-price">950,000 Fcfa</p>
+                                            <a href="payment.html?name=Broyeuse%20%C3%89lectrique%20de%20Manioc&price=950,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-broyeur-inox-attieke-manio-800x450.webp?alt=media&token=a267ce66-0829-446a-9ced-6b3e62609eb4" alt="Broyeur en inox pour attiéké et manioc" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Presse à Huile Manuelle Inox</h3>
+                                            <p class="slide-price">500,000 Fcfa</p>
+                                            <a href="payment.html?name=Presse%20%C3%A0%20Huile%20Manuelle%20Inox&price=500,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-broyeur-melangeur-et-accessoires-800x450.webp?alt=media&token=623c6155-c64a-44b2-91b4-ec3283df0c78" alt="Broyeur mélangeur industriel et ses accessoires" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Broyeur Mélangeur Industriel</h3>
+                                            <p class="slide-price">1,200,000 Fcfa</p>
+                                            <a href="payment.html?name=Broyeur%20M%C3%A9langeur%20Industriel&price=1,200,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                     <button on="tap:carousel1.prev()" class="amp-carousel-button amp-carousel-button-prev" aria-label="Previous slide"></button>
+                                     <button on="tap:carousel1.next()" class="amp-carousel-button amp-carousel-button-next" aria-label="Next slide"></button>
+                                </amp-carousel>
+                            </div>
+                             <div class="hero-tab-content" [hidden]="tabCarousel.active != 'tab2'" hidden>
+                                <amp-carousel id="carousel2" width="800" height="450" layout="responsive" type="slides" loop autoplay delay="5000">
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-etais-metalliques-neufs-6-m-800x450.webp?alt=media&token=50eb4107-37e9-450d-80cb-e76574eac211" alt="Étais métalliques neufs pour la construction" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Étais Métalliques Neufs</h3>
+                                            <p class="slide-price">15,000 Fcfa / pièce</p>
+                                            <a href="payment.html?name=%C3%89tais%20M%C3%A9talliques%20Neufs&price=15,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-tricycle-cargo-neuf-achat-800x450.webp?alt=media&token=5321d398-6108-4924-80ad-0caa16048eee" alt="Tricycle cargo neuf pour le transport de marchandises" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Tricycle Cargo Neuf</h3>
+                                            <p class="slide-price">850,000 Fcfa</p>
+                                            <a href="payment.html?name=Tricycle%20Cargo%20Neuf&price=850,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-etancheite-chappe-couverture-toiture-800x450.webp?alt=media&token=5a01b57d-2cd3-4a8a-9522-da9992f61a34" alt="Produits d'étanchéité pour toiture et chappe" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Produits d'Étanchéité Toiture</h3>
+                                            <p class="slide-price">25,000 Fcfa / rouleau</p>
+                                            <a href="payment.html?name=Produits%20d%27%C3%89tanch%C3%A9it%C3%A9%20Toiture&price=25,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                     <button on="tap:carousel2.prev()" class="amp-carousel-button amp-carousel-button-prev" aria-label="Previous slide"></button>
+                                     <button on="tap:carousel2.next()" class="amp-carousel-button amp-carousel-button-next" aria-label="Next slide"></button>
+                                </amp-carousel>
+                            </div>
+                             <div class="hero-tab-content" [hidden]="tabCarousel.active != 'tab3'" hidden>
+                                <amp-carousel id="carousel3" width="800" height="450" layout="responsive" type="slides" loop autoplay delay="5000">
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-compacteur-d-occasion-cat-cs-74-b-800x450.webp?alt=media&token=75b28227-169f-4ea7-98b8-3695ec8ac6be" alt="Compacteur d'occasion de marque CAT en vente" layout="responsive" width="800" height="450"></amp-img>
+                                         <div class="slide-overlay">
+                                            <h3 class="slide-title">Compacteur d'Occasion CAT</h3>
+                                            <p class="slide-price">15,000,000 Fcfa</p>
+                                            <a href="payment.html?name=Compacteur%20d%27Occasion%20CAT&price=15,000,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-conteneur-frigorifique-40-pieds-second-main1-800x450.webp?alt=media&token=b21b3e1d-5fd6-4cfb-b1c9-d4efdfb28781" alt="Conteneur frigorifique de 40 pieds d'occasion" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Conteneur Frigorifique 40 pieds</h3>
+                                            <p class="slide-price">2,500,000 Fcfa</p>
+                                            <a href="payment.html?name=Conteneur%20Frigorifique%2040%20pieds&price=2,500,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-slide-container">
+                                        <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-futs-1000-litres-et-citerne-et-futs-20-l-litres-800x450.webp?alt=media&token=48531ccf-c23b-4cf0-8d4d-f60f3d012171" alt="Citernes et fûts de 1000 litres de seconde main" layout="responsive" width="800" height="450"></amp-img>
+                                        <div class="slide-overlay">
+                                            <h3 class="slide-title">Citerne 1000 Litres</h3>
+                                            <p class="slide-price">150,000 Fcfa</p>
+                                            <a href="payment.html?name=Citerne%201000%20Litres&price=150,000Fcfa" class="slide-cta">Voir l'offre</a>
+                                        </div>
+                                    </div>
+                                     <button on="tap:carousel3.prev()" class="amp-carousel-button amp-carousel-button-prev" aria-label="Previous slide"></button>
+                                     <button on="tap:carousel3.next()" class="amp-carousel-button amp-carousel-button-next" aria-label="Next slide"></button>
+                                </amp-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+            <aside class="hero-info-panel">
+                <a href="cout-en-detail-location-service-traiteur-pour-ceremonie.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0h18" /></svg><span>Evenements</span></a>
+                <a href="internet-sur-portable-mobile-parametrages-wap.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><span>Astuces</span></a>
+                <a href="sitemap.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg><span>Nos Conseils</span></a>
+                <a href="prix-detaille-electricite-batiment-en-cote-d-ivoire-abidjan" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" /></svg><span>En fin de stock</span></a>
+                <a href="les-plus-lus-abidjansolution.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg><span>Les Plus Lus</span></a>
+                <a href="bienvenue-abidjansolution.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.117 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.117 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg><span>Ventes recentes</span></a>
+                <a href="histoire-droles-racontees-a-abidjan-cote-d--ivoire.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9 9.75a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 0 1.5H9.75a.75.75 0 0 1-.75-.75Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 0 1.5H14.25a.75.75 0 0 1-.75-.75Z" /></svg><span>Humour & detente</span></a>
+            </aside>
+            </div>
+		</section>
+
+        <section style="margin-top:40px">
+            <h2 class="section-title">Fabrication Locale</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=fabrication" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <div class="p-badge">{{status_label}}</div>
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Acheter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Location et Vente (Lourd)</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=lourd" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+		
+		 <section>
+            <h2 class="section-title">Electromenagers</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=neufs" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Unité Complète</h2>
+            <amp-list class="packs-wide-layout" height="650" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card-wide">
+                        <amp-img src="{{imageUrl}}" width="450" height="300" layout="fixed"></amp-img>
+                        <div class="p-body-wide">
+                            <h3 style="font-size:24px">{{name}}</h3>
+                            <div class="p-price" style="margin:15px 0">{{price_value}} FCFA</div>
+                            <a href="{{payment_link}}" class="btn-action" style="width:200px">Commander</a>
+                        </div>
+                    </div>
+                </template>
+            </amp-list>
+        </section>
+		
+		 <section>
+            <h2 class="section-title">Informatique</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=informatique" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+		
+		<section>
+            <h2 class="section-title">Immobilier</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=immobilier" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+        
+		<section>
+            <h2 class="section-title">Monetique</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=services" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+		
+		<section>
+            <h2 class="section-title">Quincaillerie Generale</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=quincaillerie" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+		
+		<section>
+            <h2 class="section-title">Divers</h2>
+            <div class="scrollable-section">
+                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=divers" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card">
+                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
+                            <div class="p-body">
+                                <h3 class="p-title">{{name}}</h3>
+                                <div class="p-price">{{price_value}} FCFA</div>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </template>
+                </amp-list>
+            </div>
+        </section>
+		
+        </main>
+
+    <footer class="footer">
+        <div class="container-grid">
+            <div class="footer-about">
+                <h3 class="footer-title">Abidjan Solution</h3>
+                <p>Votre plateforme de confiance pour l'achat et la location de machines, équipements et services en Afrique de l'Ouest.</p>
+                <ul class="footer-contact-info">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Siège social : Abidjan, Cocody Riviera 3 Lycée Francais Blaise Pascal. Site Web: www.abidjansolution.biz</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81 .7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>EKKS Entreprise Sarl. 18 BP 1786 Abidjan 18 Tel : 07 07 28 34 05 .RC:CI-ABJ-2019-B-21896</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <span>CC : 1973347 D.Banque: UBA. N°CPTE: 105340002263. Email : ekks@abidjansolution.biz</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Catégories</h3>
+                <ul>
+                    <li><a href="#fabrication-locale">Fabrication Locale</a></li>
+                    <li><a href="#produits-neufs">Produits Neufs</a></li>
+                    <li><a href="#articles-occasion">Articles d'Occasion</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#quincaillerie">Quincaillerie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Liens Utiles</h3>
+                <ul>
+                    <li><a href="sitemap2.html">Plan du site</a></li>
+                    <li><a href="a-propos-de-nous-ekks-entreprise.html">À propos de nous</a></li>
+                    <li><a href="conditions-d-utilisation-abidjansolution.html">Conditions d'utilisation</a></li>
+                    <li><a href="abidjansolution-biz-regles-relatives-au-consentement-de-l-utilisateur.html">Politique de confidentialité</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="sell.html">Devenir vendeur</a></li>
+                    <li><a href="nos.html">Contactez-nous</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-8 mb-0 border-y border-gray-700">
+            <h3 class="text-xl font-bold text-white mb-6 text-center">Ils nous ont fait Confiance</h3>
+            <div class="partner-logo-wrapper">
+                <div class="partner-logo-scroller">
+                    <!-- Set 1 -->
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/fao-cote-d-ivoire-abidjansolution.webp?alt=media&token=aa3e79bb-3283-4dca-8270-031c9cfb81d8" alt="FAO Côte d'Ivoire" width="74" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/care-cote-d-ivoire-abidjansolution.webp?alt=media&token=c75c2c8d-fd8f-4635-838d-4105edd7ae6b" alt="CARE Côte d'Ivoire" width="60" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/bollore-agl-cote-d-ivoire-abidjansolution.webp?alt=media&token=b1c34be6-4080-4a7a-9ca6-f6e2eedca2a8" alt="Bolloré / AGL Côte d'Ivoire" width="158" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/saph-siph-cote-d-ivoire-abidjansolution.webp?alt=media&token=f1bc329c-9626-4d47-a022-115ff9757300" alt="SAPH / SIPH Côte d'Ivoire" width="76" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ong-rikolto-international-cote-d-ivoire-abidjansolution.webp?alt=media&token=6af87a28-5130-4409-8ae1-34c83b3e1b20" alt="Rikoloto International" width="223" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ambassade-suisse-cote-d-ivoire-abidjansolution.webp?alt=media&token=efc29f80-c3b2-41a5-9755-be35650f13d9" alt="Ambassade Suisse" width="75" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/entrepreneurs-du-monde-cote-d-ivoire-abidjansolution.webp?alt=media&token=a76ad10b-0aae-40aa-8e43-f59d718b0ecf" alt="Entrepreneurs du Monde" width="245" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/chambre-de-commerce-et-d-insdustrie-cote-d-ivoire-abidjansolution.webp?alt=media&token=6e3cb3bd-6348-4adb-9775-ea96b3cde1f4" alt="Chambre de Commerce et d’Industrie de Côte d’Ivoire" width="363" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/setao-bouygues-construction-abidjansolution.webp?alt=media&token=a956212d-c424-4fa1-ac4c-6eee211c56b5" alt="SETAO filiale BOUYGUES Construction" width="143" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/agrisud-international-cote-divoire.webp?alt=media&token=9c087933-9df1-4e95-8531-4e5e8ee11b37" alt="AGRISUD International Cote d'Ivoire" width="77" height="75" layout="fixed"></amp-img>
+                    <!-- Set 2 (Duplicate for seamless scroll) -->
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/fao-cote-d-ivoire-abidjansolution.webp?alt=media&token=aa3e79bb-3283-4dca-8270-031c9cfb81d8" alt="FAO Côte d'Ivoire" width="74" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/care-cote-d-ivoire-abidjansolution.webp?alt=media&token=c75c2c8d-fd8f-4635-838d-4105edd7ae6b" alt="CARE Côte d'Ivoire" width="60" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/bollore-agl-cote-d-ivoire-abidjansolution.webp?alt=media&token=b1c34be6-4080-4a7a-9ca6-f6e2eedca2a8" alt="Bolloré / AGL Côte d'Ivoire" width="158" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/saph-siph-cote-d-ivoire-abidjansolution.webp?alt=media&token=f1bc329c-9626-4d47-a022-115ff9757300" alt="SAPH / SIPH Côte d'Ivoire" width="76" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ong-rikolto-international-cote-d-ivoire-abidjansolution.webp?alt=media&token=6af87a28-5130-4409-8ae1-34c83b3e1b20" alt="Rikoloto International" width="223" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ambassade-suisse-cote-d-ivoire-abidjansolution.webp?alt=media&token=efc29f80-c3b2-41a5-9755-be35650f13d9" alt="Ambassade Suisse" width="75" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/entrepreneurs-du-monde-cote-d-ivoire-abidjansolution.webp?alt=media&token=a76ad10b-0aae-40aa-8e43-f59d718b0ecf" alt="Entrepreneurs du Monde" width="245" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/chambre-de-commerce-et-d-insdustrie-cote-d-ivoire-abidjansolution.webp?alt=media&token=6e3cb3bd-6348-4adb-9775-ea96b3cde1f4" alt="Chambre de Commerce et d’Industrie de Côte d’Ivoire" width="363" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/setao-bouygues-construction-abidjansolution.webp?alt=media&token=a956212d-c424-4fa1-ac4c-6eee211c56b5" alt="SETAO filiale BOUYGUES Construction" width="143" height="75" layout="fixed"></amp-img>
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/agrisud-international-cote-divoire.webp?alt=media&token=9c087933-9df1-4e95-8531-4e5e8ee11b37" alt="AGRISUD International Cote d'Ivoire" width="77" height="75" layout="fixed"></amp-img>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-gray-400">
+             <div id="postPromptUI" class="privacy-settings">
+                 <button on="tap:ConsentManager.prompt()" role="button">Manage privacy settings</button>
+            </div>
+            <p>&copy; 2024 Abidjan Solution. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
