@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yango Widget</title>
+    <script src="https://yango.com/media/widget/yandex_taxi_widget.js" charset="utf-8" async></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .ya-taxi-widget a[data-link] {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #f58220; /* accent-orange */
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            text-align: center;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .ya-taxi-widget a[data-link]:hover {
+            background-color: #004c3f; /* secondary-green */
+        }
+        .ya-taxi-widget div[data-description=true] {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #343a40; /* dark-gray */
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .ya-taxi-widget div[data-disclaimer=true] {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ya-taxi-widget"
+        data-clid="yourclid" 
+        data-apikey="951a2f8d262547d8a5fc63f70cf54552" 
+        data-use-location="true"
+        data-point-b="5.386424704986347, -4.0207719368451835"
+        data-custom-layout="true"
+        data-ref="yoursitename"
+        data-lang="fr"
+        data-proxy-url="https://yango.go.link/route?start-lat={start-lat}&start-lon={start-lon}&end-lat={end-lat}&end-lon={end-lon}&adj_adgroup=widget&ref={ref}&adj_t=vokme8e_nd9s9z9&lang=ru&adj_deeplink_js=1&utm_source=widget&adj_fallback=https%3A%2F%2Fyango.com%2Fen_int%2Forder%2F%3Fgfrom%3D{start-lon}%2C{start-lat}%26gto%3D{end-lon}%2C{end-lat}%26ref%3D{ref}"
+        >
+        <div data-description="true"></div>
+        <div><a href="#" data-link="true">Commandez un Livreur</a></div>
+        <div data-disclaimer="true"></div>
+    </div>
+</body>
+</html>

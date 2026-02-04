@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Fonction de vérification Admin
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == "mr_koffi@abidjansolution.biz" || 
+        request.auth.token.email == "ekks@abidjansolution.biz" ||
+        request.auth.uid == "lZnSkitsTEW0GJcPO9Ty2aALVjD2"
+      );
+    }
+
+    // Règle groupée pour toutes les collections publiques du catalogue
+    match /{collection}/{doc} {
+      allow read: if collection in [
+        'products', 'shop', 'promo', 'locally', 'rentals', 
+        'appliances', 'manufactory', 'miscellaneous', 'stock', 
+        'computers', 'crypto', 'estate', 'hardware', 
+        'heroSlides', 'categories', 'partners', 'siteConfig'
+      ];
+      allow write: if isAdmin();
+    }
+
+    // Leads (Contacts/Prospects)
+    match /leads/{doc} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+  }
+}

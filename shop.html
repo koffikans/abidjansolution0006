@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ⚡ lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
+    <title>Boutique - Abidjan Solution</title>
+    <link rel="canonical" href="https://www.abidjansolution.biz/shop" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <style amp-custom>
+        :root { --main-green: #008060; --accent-orange: #f58220; --text-color: #333; }
+        body { font-family: 'Roboto', sans-serif; margin: 0; background: #f1f3f6; color: var(--text-color); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 12px; }
+
+        header { background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; gap: 10px; position: relative; }
+        .logo amp-img { width: 100px; height: 35px; }
+        
+        .search-bar { flex-grow: 1; display: flex; max-width: 500px; transition: 0.3s; }
+        .search-bar input { width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 20px 0 0 20px; outline: none; font-size: 14px; }
+        .search-bar button { background: var(--accent-orange); border: none; padding: 0 15px; border-radius: 0 20px 20px 0; color: white; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .search-bar { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10; padding: 8px 12px; box-sizing: border-box; display: none; align-items: center; }
+            .search-bar.is-open { display: flex; }
+            .search-close { background: none; border: none; font-size: 20px; margin-left: 10px; color: #666; cursor: pointer; }
+            .mobile-hide { display: none; }
+        }
+
+        .header-actions { display: flex; gap: 15px; align-items: center; }
+        .action-item { text-decoration: none; color: #444; display: flex; flex-direction: column; align-items: center; font-size: 10px; font-weight: bold; position: relative; background: none; border: none; padding: 0; }
+        .action-item svg { width: 24px; height: 24px; color: var(--main-green); margin-bottom: 2px; }
+
+        .nav-sub { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0; border-top: 1px solid #f0f0f0; align-items: center; scrollbar-width: none; }
+        .nav-sub::-webkit-scrollbar { display: none; }
+        .btn-categories { background: #eee; border: none; padding: 8px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+        .nav-link { text-decoration: none; color: #555; font-size: 11px; font-weight: 700; white-space: nowrap; }
+        .nav-link.active { color: var(--main-green); border-bottom: 2px solid var(--main-green); }
+
+        .product-grid div[role="list"] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 20px 0; }
+        @media (max-width: 768px) { .product-grid div[role="list"] { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+
+        .product_card { background: white; border-radius: 8px; border: 1px solid #e0e0e0; display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+        .card_image_wrapper { position: relative; width: 100%; padding-top: 90%; }
+        .card_image_wrapper amp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .card_body { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card_title { font-size: 11px; font-weight: bold; height: 32px; overflow: hidden; margin-bottom: 5px; }
+        .card_price { font-size: 13px; font-weight: 800; color: var(--accent-orange); margin-bottom: 8px; }
+        .btn_buy { background: var(--main-green); color: white; text-align: center; padding: 8px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; }
+        
+        amp-sidebar { width: 280px; padding: 20px; background: white; }
+        .side-nav-item { display: block; padding: 15px 10px; border-bottom: 1px solid #eee; text-decoration: none; color: #333; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <amp-state id="uiState"><script type="application/json">{ "searchOpen": false }</script></amp-state>
+
+    <amp-sidebar id="sidebar" layout="nodisplay" side="left">
+        <h3 style="color:var(--main-green)">CATÉGORIES</h3>
+        <nav>
+            <a href="shop.html?category=fabrication" class="side-nav-item">Fabrication Locale</a>
+            <a href="shop.html?category=neufs" class="side-nav-item">Articles Neufs</a>
+            <a href="shop.html?category=occasion" class="side-nav-item">Occasion / Location</a>
+            <a href="onsale.html" class="side-nav-item" style="color:var(--accent-orange)">Toutes les Promos</a>
+        </nav>
+    </amp-sidebar>
+
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="logo">
+                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution_logo1.webp?alt=media&token=70c8f779-d817-46a3-b399-d7c12e3b8fcc" width="160" height="50" layout="fixed"></amp-img>
+                </a>
+                <form class="search-bar" [class]="uiState.searchOpen ? 'search-bar is-open' : 'search-bar'" method="GET" action="search.html" target="_top">
+                    <input type="search" name="q" placeholder="Rechercher..." required>
+                    <button type="submit">OK</button>
+                    <button type="button" class="search-close" on="tap:AMP.setState({uiState: {searchOpen: false}})">✕</button>
+                </form>
+                <div class="header-actions">
+                    <button class="action-item desktop-hide" style="display: none;" [style]="uiState.searchOpen ? 'display:none' : 'display:flex'" on="tap:AMP.setState({uiState: {searchOpen: true}})">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        RECH.
+                    </button>
+                    <a href="tel:0707283405" class="action-item mobile-hide" style="color:var(--accent-orange)">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.1-.27 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A19 19 0 013 4a1 1 0 011-1h3.43a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.27 1.1l-2.11 2.11z"/></svg>
+                        AIDE
+                    </a>
+                    <a href="cart.html" class="action-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        PANIER
+                    </a>
+                </div>
+            </div>
+            <nav class="nav-sub">
+                <button class="btn-categories" on="tap:sidebar.toggle">CATEGORIES ▼</button>
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="shop.html" class="nav-link active">Boutique</a>
+                <a href="onsale.html" class="nav-link">Promos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="font-size:18px; margin:20px 0">Tous nos produits</h1>
+        <amp-list width="auto" height="2000" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts" items="items" class="product-grid">
+            <template type="amp-mustache">
+                <div class="product_card">
+                    <div class="card_image_wrapper"><amp-img src="{{imageUrl}}" layout="fill"></amp-img></div>
+                    <div class="card_body">
+                        <h3 class="card_title">{{name}}</h3>
+                        <div class="card_price">{{price_value}} F</div>
+                        <a href="{{payment_link}}" class="btn_buy">Commander</a>
+                    </div>
+                </div>
+            </template>
+        </amp-list>
+    </main>
+</body>
+</html>
