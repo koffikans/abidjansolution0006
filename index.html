@@ -15,7 +15,7 @@
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
     <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
-	<script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
 
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
 
@@ -86,7 +86,7 @@
 
         /* === STYLES MOBILES ET TABLETTES (< 992px) === */
         @media (max-width: 991px) {
-            .desktop-only, .mobile-hide { display: none !important; }
+            body .desktop-only, body .mobile-hide { display: none; }
             
             /* Header sur 2 lignes */
             .header-main { flex-wrap: wrap; padding: 10px 0; gap: 10px; }
@@ -97,6 +97,38 @@
             .search-form { order: 3; width: 100%; max-width: 100%; margin-top: 5px; border-radius: 8px; }
             .search-form input { padding: 12px 15px; }
         }
+           /* Modification pour le menu déroulant au survol sur Desktop */
+        @media (min-width: 992px) {
+    /* Conteneur du menu masqué et décalé de 10px vers le bas */
+    .categories-dropdown .accordion_content {
+        display: flex; 
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px); 
+        transition: all 0.3s ease-in-out; /* L'effet "doux" dure 0.3 secondes */
+        pointer-events: none; /* Empêche de cliquer sur le menu quand il est invisible */
+    }
+
+    /* État lors du survol de la souris */
+    .categories-dropdown:hover .accordion_content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); /* Le menu remonte à sa position initiale */
+        pointer-events: auto;
+    }
+
+    /* Style du bouton déclencheur (pour remplacer l'amp-accordion) */
+    .categories-dropdown .dropdown-trigger {
+        background: var(--secondary-green);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+    }
+}
 
         /* === SIDEBAR (MENU MOBILE) === */
         amp-sidebar { width: 280px; background: white; padding-bottom: 20px; }
@@ -188,15 +220,15 @@
             .hero-tab-content-wrapper { border-top-left-radius: 5px; border-top-right-radius: 5px; }
         }
 
-        .carousel-slide-container { position: relative; line-height: 0; }
-        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%); color: white; display: flex; flex-direction: column; align-items: flex-start; }
-        .slide-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 5px 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); }
+        .carousel-slide-container { position: relative; line-height: normal; }
+        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%); color: white; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;}
+        .slide-title { font-size: 1.5rem; font-weight: 700; margin: 0; /* Simplifié car le gap gère l'espace */ line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); }
         .slide-price { font-size: 1.25rem; font-weight: 500; color: var(--accent-orange); margin: 0 0 15px 0; background: rgba(255, 255, 255, 0.1); padding: 5px 10px; border-radius: 5px; }
         .slide-cta { padding: 8px 18px; background-color: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 1rem; }
         
         @media (max-width: 767px) {
-            .slide-overlay { padding: 15px; }
-            .slide-title { font-size: 1.1rem; }
+            .slide-overlay { padding: 12px 60px; gap: 3px; /* Espace réduit sur mobile */}
+            .slide-title { font-size: 1rem; }
             .slide-price { font-size: 1rem; margin-bottom: 10px; }
             .slide-cta { font-size: 0.9rem; padding: 6px 14px; }
         }
@@ -208,26 +240,179 @@
         .info-item:hover svg { color: white; }
         @media (max-width: 767px) { .hero-info-panel { justify-content: center; } }
 
-        /* Product Lists */
-        .scrollable-section { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 40px; scrollbar-width: none; }
-        .product-list-horizontal div[role="list"] { display: flex; gap: 15px; flex-wrap: nowrap; padding-bottom: 10px; }
-        .p-card { background: white; border-radius: 15px; border: 1px solid #e0e0e0; flex: 0 0 280px; height: 460px; position: relative; display: flex; flex-direction: column; overflow: hidden; }
-        .p-badge { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; color: var(--main-green); z-index: 10; border: 1px solid #eee; }
-        .p-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .p-title { font-size: 16px; font-weight: 800; height: 45px; overflow: hidden; margin: 10px 0; line-height: 1.4; }
-        .p-price { font-size: 20px; font-weight: 900; color: var(--accent-orange); }
-        .btn-action { background: var(--main-green); color: white; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; }
-        
-        .section-title { font-size: 24px; font-weight: 900; margin-bottom: 20px; border-left: 6px solid var(--main-green); padding-left: 15px; }
-        
-        .packs-wide-layout div[role="list"] { display: flex; flex-direction: column; gap: 20px; }
-        .p-card-wide { display: flex; background: white; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; height: 300px; }
-        .p-card-wide amp-img { flex: 0 0 450px; }
-        .p-body-wide { padding: 30px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        @media (max-width: 768px) {
-             .p-card-wide { flex-direction: column; height: auto; }
-             .p-card-wide amp-img { flex: auto; height: 200px; }
-        }
+        /* Product Lists enriched */
+.scrollable-section { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 40px; scrollbar-width: none; }
+.product-list-horizontal div[role="list"] { display: flex; gap: 15px; flex-wrap: nowrap; padding-bottom: 10px; }
+
+.p-card { 
+    background: white; 
+    border-radius: 12px; 
+    border: 1px solid #e0e0e0; 
+    flex: 0 0 280px; 
+    height: 500px; /* Augmenté pour contenir les nouvelles infos */
+    position: relative; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+}
+
+.p-badge { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; color: var(--main-green); z-index: 10; border: 1px solid #eee; }
+
+.p-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; gap: 8px; }
+
+/* Titre bleu souligné au survol */
+.p-title-link { text-decoration: none; }
+.p-title { font-size: 15px; font-weight: 700; color: #0000ee; line-height: 1.3; height: 40px; overflow: hidden; margin: 0; }
+
+/* Marque en vert avec icône */
+.p-brand { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--main-green); font-weight: 600; }
+.check-icon { width: 14px; height: 14px; fill: var(--main-green); }
+
+/* Prix et compteur d'offres */
+.p-price-row { display: flex; justify-content: space-between; align-items: center; }
+.p-price { font-size: 18px; font-weight: 900; color: var(--accent-orange); }
+.p-count { font-size: 12px; font-weight: 600; color: #444; }
+
+/* Labels de bas de carte (Fin enchères) */
+.p-info-row { display: flex; justify-content: space-between; font-size: 11px; color: #888; border-top: 1px solid #f0f0f0; padding-top: 8px; margin-top: auto; }
+
+/* Footer d'actions */
+.p-footer { display: flex; align-items: center; gap: 10px; padding-top: 10px; }
+.btn-wishlist { 
+    background: white; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 50%; 
+    width: 36px; 
+    height: 36px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer;
+}
+.btn-wishlist svg { width: 18px; height: 18px; fill: none; stroke: #888; stroke-width: 2; }
+.btn-action { 
+    background: var(--main-green); 
+    color: white; 
+    flex-grow: 1; 
+    padding: 10px; 
+    border-radius: 20px; 
+    text-decoration: none; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 14px; 
+}
+
+       /* --- Style global des sections de produits --- */
+.product-carousel-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* --- Configuration du Carrousel --- */
+.custom-nav-arrows .amp-carousel-button {
+    background-color: var(--accent-orange);
+    background-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    top: 35%; /* Centré sur l'image du produit */
+    transition: background-color 0.3s ease;
+}
+
+.custom-nav-arrows .amp-carousel-button:hover {
+    background-color: var(--main-green);
+}
+
+/* Masquage des flèches sur mobile pour éviter de masquer l'image (vu sur capture) */
+@media (max-width: 767px) {
+    .custom-nav-arrows .amp-carousel-button {
+        display: none;
+    }
+}
+
+/* --- Structure de la Carte Produit (P-Card) --- */
+.p-card { 
+    background: white; 
+    border-radius: 12px; 
+    border: 1px solid #e0e0e0; 
+    width: 280px; 
+    height: 510px; /* Hauteur ajustée pour toutes les infos */
+    margin: 0 8px; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+}
+
+.p-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; gap: 8px; }
+.p-title-link { text-decoration: none; }
+.p-title { font-size: 15px; font-weight: 700; color: #0000ee; line-height: 1.3; height: 40px; overflow: hidden; margin: 0; }
+.p-brand { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--main-green); font-weight: 600; }
+.check-icon { width: 14px; height: 14px; fill: var(--main-green); }
+.p-price-row { display: flex; justify-content: space-between; align-items: center; }
+.p-price { font-size: 18px; font-weight: 900; color: var(--accent-orange); }
+.p-count { font-size: 12px; font-weight: 600; color: #444; }
+.p-info-row { display: flex; justify-content: space-between; font-size: 11px; color: #888; border-top: 1px solid #f0f0f0; padding-top: 8px; margin-top: auto; }
+
+/* Footer d'actions */
+.p-footer { display: flex; align-items: center; gap: 10px; padding-top: 10px; }
+.btn-wishlist { background: white; border: 1px solid #e0e0e0; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+.btn-wishlist svg { width: 18px; height: 18px; fill: none; stroke: #888; stroke-width: 2; }
+.btn-action { background: var(--main-green); color: white; flex-grow: 1; padding: 10px; border-radius: 20px; text-decoration: none; text-align: center; font-weight: bold; font-size: 14px; }
+
+/* --- Template Spécifique : Unité Complète (Packs) --- */
+
+.p-card-horizontal {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    width: 750px; /* Largeur augmentée pour le format paysage */
+    height: 350px; /* Hauteur réduite car aligné horizontalement */
+    margin: 0 10px;
+    display: flex; /* Active l'alignement horizontal */
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Zone Image du Pack */
+.pack-img-wrapper {
+    flex: 0 0 450px; /* L'image prend 450px de large */
+    height: 100%;
+    position: relative;
+}
+
+.pack-img-wrapper amp-img {
+    height: 100%;
+}
+
+/* Zone Texte du Pack */
+.pack-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre le texte verticalement par rapport à l'image */
+    gap: 12px;
+}
+
+/* Ajustements Responsive pour Mobile */
+@media (max-width: 767px) {
+    .p-card-horizontal {
+        width: 320px; /* Retour au format vertical sur petit écran */
+        height: auto;
+        flex-direction: column;
+    }
+    .pack-img-wrapper {
+        flex: 0 0 200px;
+        width: 100%;
+    }
+}
+
+/* Positionnement des flèches pour le carrousel haut (650px -> 400px) */
+.pack-carousel .amp-carousel-button {
+    top: 50%; /* Centrage vertical parfait */
+}
 
         /* Footer */
         .footer { background: var(--main-green); color: white; padding: 40px 15px; margin-top: 40px; }
@@ -248,7 +433,7 @@
         .partner-logo-scroller { display: flex; width: fit-content; animation: scroll 60s linear infinite; }
         .partner-logo-scroller amp-img { margin: 0 40px; opacity: 1; transition: transform 0.3s ease; object-fit: contain; }
     </style>
-	<script type="application/ld+json">
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -383,6 +568,8 @@
   ]
 }
 </script>
+
+<link rel="stylesheet" href="/index.css">
 <script type="importmap">
 {
   "imports": {
@@ -398,10 +585,13 @@
   }
 }
 </script>
+  <script type="module" crossorigin src="./assets/main-rWPW3Z2V.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="./assets/index.esm-DYxK39bG.js">
+  <link rel="modulepreload" crossorigin href="./assets/index.esm-DtlehpGn.js">
 </head>
 
 <body>
-    <!-- SIDEBAR MOBILE NAVIGATION -->
     <amp-sidebar id="sidebar" layout="nodisplay" side="left">
         <div class="sidebar-head">
             <h3>Abidjan Solution</h3>
@@ -428,7 +618,6 @@
         </nav>
     </amp-sidebar>
 
-    <!-- Google Tag Manager & Analytics -->
     <amp-analytics data-credentials="include">
         <script type="application/json">
         {
@@ -448,12 +637,10 @@
         </script>
     </amp-analytics>
     
-    <!-- AMP Consent Configuration -->
     <amp-consent id="ConsentManager" layout="nodisplay" type="ConsentManager">
         <script type="application/json"> { "postPromptUI": "postPromptUI", "clientConfig": { "cdid": "e084bff831374", "params": "" } } </script>
     </amp-consent>
 
-    <!-- AMP States -->
     <amp-state id="appState">
         <script type="application/json">
             {
@@ -470,8 +657,7 @@
     <amp-state id="socialFabState"><script type="application/json">{ "isOpen": false }</script></amp-state>
 
     <header>
-        <!-- TOPBAR (inchangé) -->
-<div class="top-bar">
+        <div class="top-bar">
   <div class="container">
     <a href="sell.html" class="sell-link-top">Vendez sur abidjansolution</a>
     <div class="mobile-hide">
@@ -483,9 +669,7 @@
   </div>
 </div>
 
-<!-- HEADER PRINCIPAL (version hybride responsive) -->
 <div class="container header-main">
-  <!-- Logo -->
   <a href="index.html" class="logo">
     <amp-img 
       src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution_logo1.webp?alt=media&token=70c8f779-d817-46a3-b399-d7c12e3b8fcc"
@@ -496,31 +680,23 @@
     </amp-img>
   </a>
 
-  <!-- Barre de recherche (desktop: centre, mobile: pleine largeur en bas) -->
   <form class="search-form" method="GET" action="search.html" target="_top">
     <input type="search" name="q" placeholder="Chercher un article..." required>
     <button type="submit">Rechercher</button>
   </form>
 
-  <!-- Actions : Panier, Auth, Catégories, Mobile Trigger -->
   <div class="header-actions-wrapper">
-    <!-- Dropdown Catégories (desktop seulement) -->
     <div class="categories-dropdown desktop-only">
-      <amp-accordion expand-single-section>
-        <section>
-          <h5>CATEGORIES ▼</h5>
-          <div class="accordion_content">
+        <div class="dropdown-trigger">CATEGORIES ▼</div>
+        <div class="accordion_content">
             <a href="#fabrication-locale">Fabrication Locale</a>
             <a href="#produits-neufs">Produits Neufs</a>
             <a href="#articles-occasion">Articles d'Occasion</a>
             <a href="#packs">Packs Industriels</a>
             <a href="#services">Services Numériques</a>
-          </div>
-        </section>
-      </amp-accordion>
+        </div>
     </div>
 
-    <!-- Panier -->
     <a href="cart.html" class="header_cart_btn">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
@@ -528,10 +704,10 @@
       <span class="mobile-hide">Panier</span>
     </a>
 
-    <!-- Authentification -->
-    <div [hidden]="appState.user" hidden>
+    <div [hidden]="appState.user">
       <a href="#" on="tap:auth-lightbox.open" class="header_cta_btn">Connexion</a>
     </div>
+
     <div [hidden]="!appState.user" hidden>
       <div class="user-info">
         <span [text]="appState.user.email.substring(0,10) + '...'"></span>
@@ -542,8 +718,8 @@
         </button>
       </div>
     </div>
+    </div>
 
-    <!-- Boutons mobile uniquement -->
     <div class="mobile-header-actions">
       <button on="tap:sidebar.toggle" class="hamburger" aria-label="Menu">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="30" height="30">
@@ -685,169 +861,353 @@
                 <a href="histoire-droles-racontees-a-abidjan-cote-d--ivoire.html" class="info-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9 9.75a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 0 1.5H9.75a.75.75 0 0 1-.75-.75Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 0 1.5H14.25a.75.75 0 0 1-.75-.75Z" /></svg><span>Humour & detente</span></a>
             </aside>
             </div>
-		</section>
-
-        <section style="margin-top:40px">
-            <h2 class="section-title">Fabrication Locale</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=fabrication" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <div class="p-badge">{{status_label}}</div>
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
+        </section>
+        
+       <section style="margin-top:40px">
+    <h2 class="section-title">Fabrication Locale</h2>
+    
+    <div class="product-carousel-container">
+        <amp-carousel id="productCarousel" 
+            type="carousel" 
+            height="520" 
+            layout="fixed-height" 
+            controls 
+            class="custom-nav-arrows">
+            
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=fabrication" 
+                layout="fill" 
+                items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link">
                                 <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
+                            </a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Ajouter aux favoris">
+                                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                </button>
                                 <a href="{{payment_link}}" class="btn-action">Acheter</a>
                             </div>
-                        </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Location et Vente (Lourd)</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=lourd" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
-                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                            </div>
-                        </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-		
-		 <section>
-            <h2 class="section-title">Electromenagers</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=neufs" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
-                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                            </div>
-                        </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Unité Complète</h2>
-            <amp-list class="packs-wide-layout" height="650" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs" items="items">
-                <template type="amp-mustache">
-                    <div class="p-card-wide">
-                        <amp-img src="{{imageUrl}}" width="450" height="300" layout="fixed"></amp-img>
-                        <div class="p-body-wide">
-                            <h3 style="font-size:24px">{{name}}</h3>
-                            <div class="p-price" style="margin:15px 0">{{price_value}} FCFA</div>
-                            <a href="{{payment_link}}" class="btn-action" style="width:200px">Commander</a>
                         </div>
                     </div>
                 </template>
             </amp-list>
-        </section>
-		
-		 <section>
-            <h2 class="section-title">Informatique</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=informatique" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
+        </amp-carousel>
+    </div>
+</section>
+
+<section style="margin-top:40px">
+    <h2 class="section-title">Location et Vente (Lourd)</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=lourd" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
                                 <a href="{{payment_link}}" class="btn-action">Consulter</a>
                             </div>
                         </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-		
-		<section>
-            <h2 class="section-title">Immobilier</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=immobilier" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
-                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+
+
+<section style="margin-top:40px">
+    <h2 class="section-title">Electromenagers</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=neufs" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+                                <a href="{{payment_link}}" class="btn-action">Acheter</a>
                             </div>
                         </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+
+       <section style="margin-top:40px">
+    <h2 class="section-title">Unité Complète</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows pack-carousel">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card-horizontal">
+                        <div class="p-badge">{{status_label}}</div>
+                        
+                        <div class="pack-img-wrapper">
+                            <amp-img src="{{imageUrl}}" width="450" height="300" layout="responsive"></amp-img>
+                        </div>
+
+                        <div class="pack-content">
+                            <a href="{{payment_link}}" class="p-title-link">
+                                <h3 class="p-title" style="font-size: 18px; height: auto;">{{name}}</h3>
+                            </a>
+                            
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+
+                            <div class="p-price-row">
+                                <span class="p-price" style="font-size: 22px;">{{price_value}} Fcfa</span>
+                            </div>
+
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris">
+                                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                </button>
+                                <a href="{{payment_link}}" class="btn-action" style="background-color: var(--accent-orange);">Commander le Pack</a>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
         
-		<section>
-            <h2 class="section-title">Monetique</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=services" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
+
+<section style="margin-top:40px">
+    <h2 class="section-title">Informatique</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=informatique" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
                                 <a href="{{payment_link}}" class="btn-action">Consulter</a>
                             </div>
                         </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-		
-		<section>
-            <h2 class="section-title">Quincaillerie Generale</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=quincaillerie" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+
+<section style="margin-top:40px">
+    <h2 class="section-title">Immobilier</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=immobilier" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
                                 <a href="{{payment_link}}" class="btn-action">Consulter</a>
                             </div>
                         </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-		
-		<section>
-            <h2 class="section-title">Divers</h2>
-            <div class="scrollable-section">
-                <amp-list class="product-list-horizontal" height="460" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=divers" items="items">
-                    <template type="amp-mustache">
-                        <div class="p-card">
-                            <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"></amp-img>
-                            <div class="p-body">
-                                <h3 class="p-title">{{name}}</h3>
-                                <div class="p-price">{{price_value}} FCFA</div>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+
+
+<section style="margin-top:40px">
+    <h2 class="section-title">Monetique</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=services" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
                                 <a href="{{payment_link}}" class="btn-action">Consulter</a>
                             </div>
                         </div>
-                    </template>
-                </amp-list>
-            </div>
-        </section>
-		
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+        
+
+<section style="margin-top:40px">
+    <h2 class="section-title">Quincaillerie Generale</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=quincaillerie" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+
+        
+<section style="margin-top:40px">
+    <h2 class="section-title">Divers</h2>
+    <div class="product-carousel-container">
+        <amp-carousel type="carousel" height="520" layout="fixed-height" controls class="custom-nav-arrows">
+            <amp-list src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=divers" layout="fill" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card">
+                        <div class="p-badge">{{status_label}}</div>
+                        <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
+                        <div class="p-body">
+                            <a href="{{payment_link}}" class="p-title-link"><h3 class="p-title">{{name}}</h3></a>
+                            <div class="p-brand">
+                                <span>{{brand}}</span>
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="p-price-row">
+                                <span class="p-price">{{price_value}} Fcfa</span>
+                                <span class="p-count">{{product_count}}</span>
+                            </div>
+                            <div class="p-info-row">
+                                <span class="label">{{info_label}}</span>
+                                <span class="value">{{info_value}}</span>
+                            </div>
+                            <div class="p-footer">
+                                <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+                                <a href="{{payment_link}}" class="btn-action">Consulter</a>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </amp-list>
+        </amp-carousel>
+    </div>
+</section>
+
+        
         </main>
 
     <footer class="footer">
@@ -897,7 +1257,6 @@
             <h3 class="text-xl font-bold text-white mb-6 text-center">Ils nous ont fait Confiance</h3>
             <div class="partner-logo-wrapper">
                 <div class="partner-logo-scroller">
-                    <!-- Set 1 -->
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/fao-cote-d-ivoire-abidjansolution.webp?alt=media&token=aa3e79bb-3283-4dca-8270-031c9cfb81d8" alt="FAO Côte d'Ivoire" width="74" height="75" layout="fixed"></amp-img>
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/care-cote-d-ivoire-abidjansolution.webp?alt=media&token=c75c2c8d-fd8f-4635-838d-4105edd7ae6b" alt="CARE Côte d'Ivoire" width="60" height="75" layout="fixed"></amp-img>
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/bollore-agl-cote-d-ivoire-abidjansolution.webp?alt=media&token=b1c34be6-4080-4a7a-9ca6-f6e2eedca2a8" alt="Bolloré / AGL Côte d'Ivoire" width="158" height="75" layout="fixed"></amp-img>
@@ -908,7 +1267,6 @@
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/chambre-de-commerce-et-d-insdustrie-cote-d-ivoire-abidjansolution.webp?alt=media&token=6e3cb3bd-6348-4adb-9775-ea96b3cde1f4" alt="Chambre de Commerce et d’Industrie de Côte d’Ivoire" width="363" height="75" layout="fixed"></amp-img>
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/setao-bouygues-construction-abidjansolution.webp?alt=media&token=a956212d-c424-4fa1-ac4c-6eee211c56b5" alt="SETAO filiale BOUYGUES Construction" width="143" height="75" layout="fixed"></amp-img>
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/agrisud-international-cote-divoire.webp?alt=media&token=9c087933-9df1-4e95-8531-4e5e8ee11b37" alt="AGRISUD International Cote d'Ivoire" width="77" height="75" layout="fixed"></amp-img>
-                    <!-- Set 2 (Duplicate for seamless scroll) -->
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/fao-cote-d-ivoire-abidjansolution.webp?alt=media&token=aa3e79bb-3283-4dca-8270-031c9cfb81d8" alt="FAO Côte d'Ivoire" width="74" height="75" layout="fixed"></amp-img>
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/care-cote-d-ivoire-abidjansolution.webp?alt=media&token=c75c2c8d-fd8f-4635-838d-4105edd7ae6b" alt="CARE Côte d'Ivoire" width="60" height="75" layout="fixed"></amp-img>
                     <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/bollore-agl-cote-d-ivoire-abidjansolution.webp?alt=media&token=b1c34be6-4080-4a7a-9ca6-f6e2eedca2a8" alt="Bolloré / AGL Côte d'Ivoire" width="158" height="75" layout="fixed"></amp-img>

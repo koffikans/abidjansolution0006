@@ -1,125 +1,439 @@
 <!DOCTYPE html>
 <html ⚡ lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
-    <title>Boutique - Abidjan Solution</title>
-    <link rel="canonical" href="https://www.abidjansolution.biz/shop" />
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
-    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
+   <title>Boutique - Abidjan Solution</title>
+   <link rel="canonical" href="https://www.abidjansolution.biz/shop" />
+  <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/favicon.ico?alt=media&token=90d5eacf-f201-40e6-b2c8-8aed141c077d" type="image/x-icon" />
+  
+   <script async src="https://cdn.ampproject.org/v0.js"></script>
+   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+   <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+   <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+   <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
 
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
-    <style amp-custom>
-        :root { --main-green: #008060; --accent-orange: #f58220; --text-color: #333; }
-        body { font-family: 'Roboto', sans-serif; margin: 0; background: #f1f3f6; color: var(--text-color); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 12px; }
+   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
 
-        header { background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .header-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; gap: 10px; position: relative; }
-        .logo amp-img { width: 100px; height: 35px; }
+
+   <style amp-custom>
+       :root { --main-green: #008060; --accent-orange: #f58220; --bg-light: #f1f3f6; --dark-gray: #333; --border-color: #e0e0e0; --light-gray: #f9f9f9; --secondary-green: #006a50; }
+       body { font-family: 'Roboto', sans-serif; margin: 0; background: var(--bg-light); color: #333; font-size: 18px; }
+       .container { max-width: 1280px; margin: 0 auto; padding: 0 15px; }
+
+
+       /* === HEADER RESPONSIVE OPTIMISÉ === */
+       header { background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+       .top-bar { background: var(--main-green); color: white; padding: 8px 0; font-size: 12px; font-weight: 500; }
+       .top-bar .container { display: flex; justify-content: space-between; align-items: center; }
+       .top-bar a { color: white; text-decoration: none; transition: opacity 0.2s; }
+       .sell-link-top { font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+      
+       /* Layout principal du header */
+       .header-main {
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           padding: 15px 0;
+           gap: 20px;
+           flex-wrap: nowrap; /* Desktop par défaut */
+       }
+      
+       .logo amp-img { display: block; }
+      
+       .search-form {
+           display: flex;
+           border: 2px solid #ddd;
+           border-radius: 30px;
+           overflow: hidden;
+           flex-grow: 1;
+           max-width: 600px;
+           transition: all 0.3s ease;
+       }
+       .search-form input { flex-grow: 1; padding: 10px 20px; border: none; outline: none; font-size: 16px; }
+       .search-form button { background: var(--accent-orange); color: white; border: none; padding: 0 25px; font-weight: bold; cursor: pointer; }
+            
+       .header-actions-wrapper { display: flex; align-items: center; gap: 15px; margin-left: auto; flex-shrink: 0; }
+      
+       .header_cart_btn, .header_cta_btn {
+           display: flex; align-items: center; gap: 6px;
+           text-decoration: none; color: var(--dark-gray); font-weight: bold; font-size: 14px;
+       }
+       .header_cta_btn { background: var(--main-green); color: white; padding: 8px 15px; border-radius: 20px; }
+
+
+       /* Dropdown Catégories (Desktop) */
+       .categories-dropdown { position: relative; }
+       .categories-dropdown amp-accordion h5 {
+           background: var(--secondary-green); color: white; padding: 8px 15px; border-radius: 5px; margin: 0; cursor: pointer; font-size: 14px; font-weight: bold; border: none;
+       }
+       .categories-dropdown .accordion_content {
+           position: absolute; top: 100%; left: 0; background: white; border: 1px solid var(--border-color);
+           box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 5px 0; z-index: 101;
+           display: flex; flex-direction: column; width: 220px; border-radius: 5px; margin-top: 5px;
+       }
+       .categories-dropdown .accordion_content a {
+           padding: 10px 15px; text-decoration: none; color: var(--dark-gray); border-bottom: 1px solid #eee; font-size: 14px; display: block;
+       }
+       .categories-dropdown .accordion_content a:hover { background-color: #f5f5f5; color: var(--main-green); }
+
+
+       .user-info { display: flex; align-items: center; gap: 8px; background: var(--main-green); color: white; padding: 8px 12px; border-radius: 5px; font-weight: bold; font-size: 14px; }
+       .logout-button { background: none; border: none; cursor: pointer; color: white; padding: 0; margin-left: 8px; }
+
+
+       .mobile-header-actions { display: none; align-items: center; gap: 15px; }
+       .hamburger { background: none; border: none; font-size: 26px; cursor: pointer; padding: 0; color: var(--dark-gray); display: flex; align-items: center; }
+
+
+       /* === STYLES MOBILES ET TABLETTES (< 992px) === */
+       @media (max-width: 991px) {
+           body .desktop-only, body .mobile-hide { display: none; }
+          
+           /* Header sur 2 lignes */
+           .header-main { flex-wrap: wrap; padding: 10px 0; gap: 10px; }
+           .logo { flex-grow: 1; order: 1; }
+           .logo amp-img { width: 130px; height: 40px; }
+           .header-actions-wrapper { order: 2; margin-left: 0; gap: 15px; }
+           .mobile-header-actions { display: flex; }
+           .search-form { order: 3; width: 100%; max-width: 100%; margin-top: 5px; border-radius: 8px; }
+           .search-form input { padding: 12px 15px; }
+       }
+          /* Modification pour le menu déroulant au survol sur Desktop */
+       @media (min-width: 992px) {
+   /* Conteneur du menu masqué et décalé de 10px vers le bas */
+   .categories-dropdown .accordion_content {
+       display: flex;
+       opacity: 0;
+       visibility: hidden;
+       transform: translateY(10px);
+       transition: all 0.3s ease-in-out; /* L'effet "doux" dure 0.3 secondes */
+       pointer-events: none; /* Empêche de cliquer sur le menu quand il est invisible */
+   }
+
+
+   /* État lors du survol de la souris */
+   .categories-dropdown:hover .accordion_content {
+       opacity: 1;
+       visibility: visible;
+       transform: translateY(0); /* Le menu remonte à sa position initiale */
+       pointer-events: auto;
+   }
+
+
+   /* Style du bouton déclencheur (pour remplacer l'amp-accordion) */
+   .categories-dropdown .dropdown-trigger {
+       background: var(--secondary-green);
+       color: white;
+       padding: 8px 15px;
+       border-radius: 5px;
+       cursor: pointer;
+       font-size: 14px;
+       font-weight: bold;
+       display: block;
+   }
+}
+
+
+       /* === SIDEBAR (MENU MOBILE) === */
+       amp-sidebar { width: 280px; background: white; padding-bottom: 20px; }
+       .sidebar-head {
+           background: var(--main-green); color: white; padding: 15px;
+           display: flex; justify-content: space-between; align-items: center;
+       }
+       .sidebar-head h3 { margin: 0; font-size: 18px; font-weight: 800; }
+       .close-sidebar { background: none; border: none; color: white; font-size: 24px; font-weight: bold; cursor: pointer; }
+      
+       .sidebar-menu { padding: 0; list-style: none; margin: 0; }
+       .sidebar-menu a {
+           display: flex; align-items: center; gap: 10px;
+           padding: 14px 20px; border-bottom: 1px solid #f0f0f0;
+           text-decoration: none; color: #333; font-size: 15px; font-weight: 500;
+       }
+       .sidebar-menu a:active { background-color: #f9f9f9; }
+       .sidebar-menu a.highlight { color: var(--accent-orange); font-weight: 800; }
+       .sidebar-section-title {
+           background: #f4f4f4; padding: 12px 20px; font-size: 13px;
+           text-transform: uppercase; color: #666; font-weight: 800;
+           margin-top: 10px; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+       }
+
+
+       /* === LAYOUT & MAIN GRID === */
+       .main-layout { display: grid; grid-template-columns: 280px 1fr; gap: 25px; margin-top: 20px; }
+       .sidebar-desktop { background: white; border-radius: 12px; border: 1px solid #e0e0e0; }
+       .sidebar-header { background: #fafafa; padding: 20px; border-bottom: 1px solid #eee; font-weight: 800; }
+       .side-nav-link { display: flex; align-items: center; gap: 15px; padding: 12px 20px; text-decoration: none; color: #444; border-bottom: 1px solid #f9f9f9; font-size: 16px; }
+
+
+/* --- Barre de Filtres Boutique --- */
+.filter-container {
+   margin: 20px 0;
+   display: flex;
+   overflow-x: auto;
+   white-space: nowrap;
+   -webkit-overflow-scrolling: touch;
+   scrollbar-width: none;
+   padding-bottom: 10px;
+}
+.filter-container::-webkit-scrollbar { display: none; }
+
+
+.filter-chip {
+   background: white;
+   border: 1px solid var(--border-color);
+   padding: 8px 18px;
+   margin-right: 10px;
+   border-radius: 25px;
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.2s;
+   color: var(--dark-gray);
+   outline: none;
+}
+
+
+/* État actif : quand une catégorie est sélectionnée */
+.filter-chip.active {
+   background: var(--main-green);
+   color: white;
+   border-color: var(--main-green);
+}
+
+
+ /* === GRILLE DE PRODUITS === */
+        .product-grid div[role="list"] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 20px 0; }
+        @media (max-width: 991px) { .product-grid div[role="list"] { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
+        .product_card { background: white; border-radius: 12px; border: 1px solid #e0e0e0; display: flex; flex-direction: column; overflow: hidden; height: 100%; transition: transform 0.3s ease; }
+        .product_card:hover { transform: translateY(-5px); }
         
-        .search-bar { flex-grow: 1; display: flex; max-width: 500px; transition: 0.3s; }
-        .search-bar input { width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 20px 0 0 20px; outline: none; font-size: 14px; }
-        .search-bar button { background: var(--accent-orange); border: none; padding: 0 15px; border-radius: 0 20px 20px 0; color: white; cursor: pointer; }
+        .card_image_wrapper { position: relative; width: 100%; }
+        
+        .img-overlay { 
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 15px 10px; 
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%); 
+            color: white; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+        }
+        .img-badge { font-size: 10px; font-weight: bold; text-transform: uppercase; background: var(--main-green); padding: 2px 6px; border-radius: 3px; }
+        .img-price { font-size: 1.1rem; font-weight: 800; color: var(--accent-orange); margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
 
-        @media (max-width: 768px) {
-            .search-bar { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10; padding: 8px 12px; box-sizing: border-box; display: none; align-items: center; }
-            .search-bar.is-open { display: flex; }
-            .search-close { background: none; border: none; font-size: 20px; margin-left: 10px; color: #666; cursor: pointer; }
-            .mobile-hide { display: none; }
+        .card_body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
+        .card_title { font-size: 14px; font-weight: bold; color: var(--dark-gray); line-height: 1.3; height: 36px; overflow: hidden; margin: 0; }
+        .btn_buy { background: var(--main-green); color: white; text-align: center; padding: 10px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 12px; text-transform: uppercase; }
+
+        /* === BOUTON RETOUR EN HAUT === */
+        .back-to-top {
+            position: fixed; bottom: 20px; right: 20px; background: var(--accent-orange); color: white;
+            width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; display: flex; align-items: center; justify-content: center;
         }
 
-        .header-actions { display: flex; gap: 15px; align-items: center; }
-        .action-item { text-decoration: none; color: #444; display: flex; flex-direction: column; align-items: center; font-size: 10px; font-weight: bold; position: relative; background: none; border: none; padding: 0; }
-        .action-item svg { width: 24px; height: 24px; color: var(--main-green); margin-bottom: 2px; }
-
-        .nav-sub { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0; border-top: 1px solid #f0f0f0; align-items: center; scrollbar-width: none; }
-        .nav-sub::-webkit-scrollbar { display: none; }
-        .btn-categories { background: #eee; border: none; padding: 8px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap; }
-        .nav-link { text-decoration: none; color: #555; font-size: 11px; font-weight: 700; white-space: nowrap; }
-        .nav-link.active { color: var(--main-green); border-bottom: 2px solid var(--main-green); }
-
-        .product-grid div[role="list"] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 20px 0; }
-        @media (max-width: 768px) { .product-grid div[role="list"] { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
-
-        .product_card { background: white; border-radius: 8px; border: 1px solid #e0e0e0; display: flex; flex-direction: column; overflow: hidden; height: 100%; }
-        .card_image_wrapper { position: relative; width: 100%; padding-top: 90%; }
-        .card_image_wrapper amp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .card_body { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; }
-        .card_title { font-size: 11px; font-weight: bold; height: 32px; overflow: hidden; margin-bottom: 5px; }
-        .card_price { font-size: 13px; font-weight: 800; color: var(--accent-orange); margin-bottom: 8px; }
-        .btn_buy { background: var(--main-green); color: white; text-align: center; padding: 8px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 10px; text-transform: uppercase; }
-        
-        amp-sidebar { width: 280px; padding: 20px; background: white; }
-        .side-nav-item { display: block; padding: 15px 10px; border-bottom: 1px solid #eee; text-decoration: none; color: #333; font-weight: 500; }
-    </style>
+        /* Responsive Mobile Fixes */
+        @media (max-width: 991px) {
+            body .mobile-hide { display: none; }
+            .header-main { flex-wrap: wrap; }
+            .search-form { order: 3; width: 100%; max-width: 100%; margin-top: 10px; }
+        }
+   </style>
 </head>
 <body>
-    <amp-state id="uiState"><script type="application/json">{ "searchOpen": false }</script></amp-state>
-
     <amp-sidebar id="sidebar" layout="nodisplay" side="left">
-        <h3 style="color:var(--main-green)">CATÉGORIES</h3>
-        <nav>
-            <a href="shop.html?category=fabrication" class="side-nav-item">Fabrication Locale</a>
-            <a href="shop.html?category=neufs" class="side-nav-item">Articles Neufs</a>
-            <a href="shop.html?category=occasion" class="side-nav-item">Occasion / Location</a>
-            <a href="onsale.html" class="side-nav-item" style="color:var(--accent-orange)">Toutes les Promos</a>
-        </nav>
-    </amp-sidebar>
+       <div class="sidebar-head">
+           <h3>Abidjan Solution</h3>
+           <button on="tap:sidebar.toggle" class="close-sidebar">✕</button>
+       </div>
+       <nav>
+           <ul class="sidebar-menu">
+               <li><a href="index.html" class="highlight">Accueil</a></li>
+               <li><a href="shop.html">🛒 Boutique</a></li>
+               <li><a href="sell.html" class="highlight">📢 Vendre un article</a></li>
+               <li><a href="delivery.html">📦 Livraison</a></li>
+               <li><a href="onsale.html">🔥 Promos</a></li>
+               <li><a href="cart.html">🛍️ Mon Panier</a></li>
+               <li><a href="tel:0707283405">📞 Service Client</a></li>
+           </ul>
+           <div class="sidebar-section-title">NOS CATÉGORIES</div>
+           <amp-list layout="fixed-height" height="500" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getCategories" items="items">
+               <template type="amp-mustache">
+                   <ul class="sidebar-menu">
+                       <li><a href="shop.html?cat={{name}}"><span>{{icon}}</span> {{name}}</a></li>
+                   </ul>
+               </template>
+           </amp-list>
+       </nav>
+   </amp-sidebar>
 
-    <header>
-        <div class="container">
-            <div class="header-top">
-                <a href="index.html" class="logo">
-                    <amp-img src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution_logo1.webp?alt=media&token=70c8f779-d817-46a3-b399-d7c12e3b8fcc" width="160" height="50" layout="fixed"></amp-img>
-                </a>
-                <form class="search-bar" [class]="uiState.searchOpen ? 'search-bar is-open' : 'search-bar'" method="GET" action="search.html" target="_top">
-                    <input type="search" name="q" placeholder="Rechercher..." required>
-                    <button type="submit">OK</button>
-                    <button type="button" class="search-close" on="tap:AMP.setState({uiState: {searchOpen: false}})">✕</button>
-                </form>
-                <div class="header-actions">
-                    <button class="action-item desktop-hide" style="display: none;" [style]="uiState.searchOpen ? 'display:none' : 'display:flex'" on="tap:AMP.setState({uiState: {searchOpen: true}})">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                        RECH.
-                    </button>
-                    <a href="tel:0707283405" class="action-item mobile-hide" style="color:var(--accent-orange)">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.1-.27 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A19 19 0 013 4a1 1 0 011-1h3.43a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.27 1.1l-2.11 2.11z"/></svg>
-                        AIDE
-                    </a>
-                    <a href="cart.html" class="action-item">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        PANIER
-                    </a>
-                </div>
-            </div>
-            <nav class="nav-sub">
-                <button class="btn-categories" on="tap:sidebar.toggle">CATEGORIES ▼</button>
-                <a href="index.html" class="nav-link">Accueil</a>
-                <a href="shop.html" class="nav-link active">Boutique</a>
-                <a href="onsale.html" class="nav-link">Promos</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="container">
-        <h1 style="font-size:18px; margin:20px 0">Tous nos produits</h1>
-        <amp-list width="auto" height="2000" layout="fixed-height" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts" items="items" class="product-grid">
-            <template type="amp-mustache">
-                <div class="product_card">
-                    <div class="card_image_wrapper"><amp-img src="{{imageUrl}}" layout="fill"></amp-img></div>
-                    <div class="card_body">
-                        <h3 class="card_title">{{name}}</h3>
-                        <div class="card_price">{{price_value}} F</div>
-                        <a href="{{payment_link}}" class="btn_buy">Commander</a>
-                    </div>
-                </div>
-            </template>
-        </amp-list>
-    </main>
+   <amp-analytics data-credentials="include">
+       <script type="application/json">
+       {
+         "vars": {
+           "gtm_id": "GTM-T2P4P9B"
+         },
+         "requests": {
+            "pageview": "https://www.googletagmanager.com/gtm.js?id=${gtm_id}&gtm.url=${sourceUrl}"
+         },
+         "triggers": {
+           "pageview": {
+             "on": "visible",
+             "request": "pageview"
+           }
+         }
+       }
+       </script>
+   </amp-analytics>
+  
+   <amp-consent id="ConsentManager" layout="nodisplay" type="ConsentManager">
+       <script type="application/json"> { "postPromptUI": "postPromptUI", "clientConfig": { "cdid": "e084bff831374", "params": "" } } </script>
+   </amp-consent>
+
+
+   <amp-state id="appState">
+       <script type="application/json">
+           {
+               "user": null,
+               "voice": {
+                   "ui": "idle",
+                   "toastMessage": "",
+                   "isToastVisible": false
+               }
+           }
+       </script>
+   </amp-state>
+   <amp-state id="tabCarousel"><script type="application/json">{ "active": "tab1" }</script></amp-state>
+   <amp-state id="socialFabState"><script type="application/json">{ "isOpen": false }</script></amp-state>
+
+
+   <header>
+       <div class="top-bar">
+ <div class="container">
+   <a href="sell.html" class="sell-link-top">Vendez sur abidjansolution</a>
+   <div class="mobile-hide">
+     <a href="shop.html" style="margin-left: 15px;" class="sell-link-top">Boutique</a>
+     <a href="delivery.html" style="margin-left: 15px;" class="sell-link-top">Livraison</a>
+     <a href="onsale.html" style="margin-left: 15px;" class="sell-link-top">Promos</a>
+     <a href="tel:0707283405" style="margin-left: 15px;" class="sell-link-top">Aide: 0707283405</a>
+   </div>
+ </div>
+</div>
+
+
+<div class="container header-main">
+ <a href="index.html" class="logo">
+   <amp-img
+     src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution_logo1.webp?alt=media&token=70c8f779-d817-46a3-b399-d7c12e3b8fcc"
+     width="160"
+     height="50"
+     layout="fixed"
+     alt="Abidjan Solution Logo">
+   </amp-img>
+ </a>
+
+
+ <form class="search-form" method="GET" action="search.html" target="_top">
+   <input type="search" name="q" placeholder="Chercher un article..." required>
+   <button type="submit">Rechercher</button>
+ </form>
+
+
+ <div class="header-actions-wrapper">
+   <div class="categories-dropdown desktop-only">
+       <div class="dropdown-trigger">CATEGORIES ▼</div>
+       <div class="accordion_content">
+           <a href="#fabrication-locale">Fabrication Locale</a>
+           <a href="#produits-neufs">Produits Neufs</a>
+           <a href="#articles-occasion">Articles d'Occasion</a>
+           <a href="#packs">Packs Industriels</a>
+           <a href="#services">Services Numériques</a>
+       </div>
+   </div>
+
+
+   <a href="cart.html" class="header_cart_btn">
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+       <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+     </svg>
+     <span class="mobile-hide">Panier</span>
+   </a>
+
+
+   <div [hidden]="appState.user">
+     <a href="#" on="tap:auth-lightbox.open" class="header_cta_btn">Connexion</a>
+   </div>
+
+
+   <div [hidden]="!appState.user" hidden>
+     <div class="user-info">
+       <span [text]="appState.user.email.substring(0,10) + '...'"></span>
+       <button on="tap:mainScript.signOut" class="logout-button" aria-label="Déconnexion">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="18" height="18">
+           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m-3-4.5-4 4m0 0 4 4m-4-4h12" />
+         </svg>
+       </button>
+     </div>
+   </div>
+   </div>
+
+
+   <div class="mobile-header-actions">
+     <button on="tap:sidebar.toggle" class="hamburger" aria-label="Menu">
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="30" height="30">
+           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+       </svg>
+     </button>
+   </div>
+ </div>
+</div>
+   </header>
+
+
+   <main class="container">
+   <amp-state id="shopFilter">
+       <script type="application/json">
+           { "category": "all" }
+       </script>
+   </amp-state>
+
+
+   <div class="filter-container">
+       <button class="filter-chip" [class]="shopFilter.category == 'all' ? 'filter-chip active' : 'filter-chip'" on="tap:AMP.setState({shopFilter: {category: 'all'}})">Tous</button>
+       <button class="filter-chip" [class]="shopFilter.category == 'fabrication' ? 'filter-chip active' : 'filter-chip'" on="tap:AMP.setState({shopFilter: {category: 'fabrication'}})">Fabrication Locale</button>
+       <button class="filter-chip" [class]="shopFilter.category == 'neufs' ? 'filter-chip active' : 'filter-chip'" on="tap:AMP.setState({shopFilter: {category: 'neufs'}})">Articles Neufs</button>
+       <button class="filter-chip" [class]="shopFilter.category == 'lourd' ? 'filter-chip active' : 'filter-chip'" on="tap:AMP.setState({shopFilter: {category: 'lourd'}})">Lourd & Location</button>
+       <button class="filter-chip" [class]="shopFilter.category == 'packs' ? 'filter-chip active' : 'filter-chip'" on="tap:AMP.setState({shopFilter: {category: 'packs'}})">Unités Complètes</button>
+       <button class="filter-chip" [class]="shopFilter.category == 'immobilier' ? 'filter-chip active' : 'filter-chip'" on="tap:AMP.setState({shopFilter: {category: 'immobilier'}})">Immobilier</button>
+   </div>
+
+
+   <h1 style="font-size:18px; margin:20px 0" [text]="shopFilter.category == 'all' ? 'Tous nos produits' : 'Produits : ' + shopFilter.category">Tous nos produits</h1>
+
+
+   <amp-list width="auto" height="2000" layout="fixed-height"
+       src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts"
+       [src]="'https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts' + (shopFilter.category != 'all' ? '?category=' + shopFilter.category : '')"
+       items="items" class="product-grid">
+       <template type="amp-mustache">
+           <div class="product_card">
+               <div class="card_image_wrapper">
+                   <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive" alt="{{name}}"></amp-img>
+                   <div class="img-overlay">
+                       <span class="img-badge">{{status_label}}</span>
+                       <p class="img-price">{{price_value}} F</p>
+                   </div>
+               </div>
+               <div class="card_body">
+                   <h3 class="card_title">{{name}}</h3>
+                   <a href="{{payment_link}}" class="btn_buy">Commander</a>
+               </div>
+           </div>
+       </template>
+   </amp-list>
+</main>
 </body>
 </html>
