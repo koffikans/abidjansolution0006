@@ -212,17 +212,7 @@
             position: relative;
         }
 
-        .categories-dropdown amp-accordion h5 {
-            background: var(--secondary-green);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin: 0;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            border: none;
-        }
+
 
         .categories-dropdown .accordion_content {
             position: absolute;
@@ -734,72 +724,88 @@
             }
         }
 
-        /* Product Lists enriched */
-        .scrollable-section {
+        /* Conteneur principal de défilement */
+        .horizontal-scroll-wrapper {
+            width: 100%;
             overflow-x: auto;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
-            margin-bottom: 40px;
             scrollbar-width: none;
+            /* Cache la scrollbar sur Firefox */
+            padding: 10px 0;
         }
 
-        .product-list-horizontal div[role="list"] {
+        .horizontal-scroll-wrapper::-webkit-scrollbar {
+            display: none;
+            /* Cache la scrollbar sur Chrome/Safari */
+        }
+
+        /* Configuration de la liste AMP */
+        .product-list-enhanced div[role="list"] {
             display: flex;
             gap: 15px;
-            flex-wrap: nowrap;
-            padding-bottom: 10px;
+            padding: 0 5px;
+            scroll-snap-type: x mandatory;
+            /* Active l'aimantage horizontal */
         }
 
-        .p-card {
+        /* La Carte Produit */
+        .p-card-enhanced {
             background: white;
             border-radius: 12px;
             border: 1px solid #e0e0e0;
-            flex: 0 0 250px;
-            height: 500px;
-            /* Augmenté pour contenir les nouvelles infos */
-            position: relative;
+            flex: 0 0 260px;
+            /* Largeur fixe de la carte */
+            height: 400px;
             display: flex;
             flex-direction: column;
+            position: relative;
             overflow: hidden;
+            scroll-snap-align: start;
+            /* Position d'arrêt de l'aimantage */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Fix pour l'affichage de l'image */
+        .p-img-container {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: #f8f8f8;
         }
 
         .p-badge {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 5px 10px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4px 8px;
+            border-radius: 4px;
             font-size: 11px;
             font-weight: bold;
             color: var(--main-green);
-            z-index: 10;
+            z-index: 5;
             border: 1px solid #eee;
         }
 
         .p-body {
             padding: 12px;
-            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-        }
-
-        /* Titre bleu souligné au survol */
-        .p-title-link {
-            text-decoration: none;
+            flex-grow: 1;
+            gap: 6px;
         }
 
         .p-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: #0000ee;
-            line-height: 1.3;
-            height: 40px;
-            overflow: hidden;
             margin: 0;
+            height: 38px;
+            overflow: hidden;
+            line-height: 1.3;
         }
 
-        /* Marque en vert avec icône */
         .p-brand {
             display: flex;
             align-items: center;
@@ -815,186 +821,38 @@
             fill: var(--main-green);
         }
 
-        /* Prix et compteur d'offres */
         .p-price-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 5px;
         }
 
         .p-price {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 900;
             color: var(--accent-orange);
         }
 
         .p-count {
-            font-size: 12px;
-            font-weight: 600;
-            color: #444;
+            font-size: 11px;
+            color: #666;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 10px;
         }
 
-        /* Labels de bas de carte (Fin enchères) */
         .p-info-row {
             display: flex;
             justify-content: space-between;
             font-size: 11px;
             color: #888;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #f5f5f5;
             padding-top: 8px;
             margin-top: auto;
         }
 
-        /* Footer d'actions */
-        .p-footer {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-top: 5px;
-        }
 
-        .btn-wishlist {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .btn-wishlist svg {
-            width: 18px;
-            height: 18px;
-            fill: none;
-            stroke: #888;
-            stroke-width: 2;
-        }
-
-        .btn-action {
-            background: var(--main-green);
-            color: white;
-            flex-grow: 1;
-            padding: 10px;
-            border-radius: 20px;
-            text-decoration: none;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        /* --- Style global des sections de produits --- */
-        .product-carousel-container {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        /* --- Configuration du Carrousel --- */
-        .custom-nav-arrows .amp-carousel-button {
-            background-color: var(--accent-orange);
-            background-size: 18px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            top: 35%;
-            /* Centré sur l'image du produit */
-            transition: background-color 0.3s ease;
-        }
-
-        .custom-nav-arrows .amp-carousel-button:hover {
-            background-color: var(--main-green);
-        }
-
-        /* Masquage des flèches sur mobile pour éviter de masquer l'image (vu sur capture) */
-        @media (max-width: 767px) {
-            .custom-nav-arrows .amp-carousel-button {
-                display: none;
-            }
-        }
-
-        /* --- Structure de la Carte Produit (P-Card) --- */
-
-
-        .p-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            width: 250px;
-            height: 390px;
-            /* Hauteur ajustée pour toutes les infos */
-            margin: 0 8px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .p-body {
-            padding: 12px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .p-title-link {
-            text-decoration: none;
-        }
-
-        .p-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #0000ee;
-            line-height: 1.3;
-            height: 40px;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        .p-brand {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            color: var(--main-green);
-            font-weight: 600;
-        }
-
-        .check-icon {
-            width: 14px;
-            height: 14px;
-            fill: var(--main-green);
-        }
-
-        .p-price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .p-price {
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--accent-orange);
-        }
-
-        .p-count {
-            font-size: 12px;
-            font-weight: 600;
-            color: #444;
-        }
-
-        .p-info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: #888;
-            border-top: 1px solid #f0f0f0;
-            padding-top: 5px;
-            margin-top: 5px;
-        }
 
         /* Footer d'actions */
         .p-footer {
@@ -1035,67 +893,153 @@
             font-size: 14px;
         }
 
-        /* --- Template Spécifique : Unité Complète (Packs) --- */
 
-        .p-card-horizontal {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            width: 750px;
-            /* Largeur augmentée pour le format paysage */
-            height: 350px;
-            /* Hauteur réduite car aligné horizontalement */
-            margin: 0 10px;
-            display: flex;
-            /* Active l'alignement horizontal */
-            flex-direction: row;
-            overflow: hidden;
-            position: relative;
-        }
+/* --- Mise en page du conteneur de défilement --- */
+.scroll-container-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
-        /* Zone Image du Pack */
-        .pack-img-wrapper {
-            flex: 0 0 450px;
-            /* L'image prend 450px de large */
-            height: 100%;
-            position: relative;
-        }
+.horizontal-scroll {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar { display: none; }
 
-        .pack-img-wrapper amp-img {
-            height: 100%;
-        }
+.product-list-horizontal-packs div[role="list"] {
+    display: flex;
+    gap: 25px;
+    padding: 15px 0;
+}
 
-        /* Zone Texte du Pack */
-        .pack-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            /* Centre le texte verticalement par rapport à l'image */
-            gap: 12px;
-        }
+/* --- LA CARTE DOUBLE (2 blocs de 450x300) --- */
+.p-card-dual-block {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 300px;    /* Hauteur stricte de l'image */
+    flex: 0 0 900px;  /* Largeur totale = 450 (img) + 450 (texte) */
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    scroll-snap-align: start;
+}
 
-        /* Ajustements Responsive pour Mobile */
-        @media (max-width: 767px) {
-            .p-card-horizontal {
-                width: 320px;
-                /* Retour au format vertical sur petit écran */
-                height: auto;
-                flex-direction: column;
-            }
+/* Bloc Gauche (Image) */
+.pack-img-side {
+    flex: 0 0 450px;
+    width: 450px;
+    height: 300px;
+}
+.pack-img-side amp-img img { object-fit: cover; }
 
-            .pack-img-wrapper {
-                flex: 0 0 200px;
-                width: 100%;
-            }
-        }
+/* Bloc Droit (Texte) */
+.pack-content-side {
+    flex: 0 0 450px;
+    width: 450px;
+    height: 300px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+}
 
-        /* Positionnement des flèches pour le carrousel haut (650px -> 400px) */
-        .pack-carousel .amp-carousel-button {
-            top: 50%;
-            /* Centrage vertical parfait */
-        }
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.p-title-pack {
+    font-size: 20px;
+    font-weight: 800;
+    color: #333;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.p-price-pack {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--accent-orange);
+}
+
+.p-footer-pack {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-action-pack {
+    background: var(--main-green);
+    color: white;
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.btn-wish-square {
+    border: 1px solid #ddd;
+    background: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    cursor: pointer;
+}
+
+/* --- FLÈCHES DE NAVIGATION --- */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-green);
+    font-size: 20px;
+}
+.arrow-prev { left: -24px; }
+.arrow-next { right: -24px; }
+
+/* --- ADAPTATION MOBILE --- */
+@media (max-width: 950px) {
+    .p-card-dual-block {
+        flex: 0 0 300px;
+        flex-direction: column;
+        height: auto;
+    }
+    .pack-img-side, .pack-content-side {
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+    }
+    .pack-content-side { padding: 20px; }
+    .nav-arrow { display: none; }
+}
 
         /* Footer */
         .footer {
@@ -1724,412 +1668,490 @@
         <section style="margin-top:40px">
             <h2 class="section-title">Fabrication Locale</h2>
 
-            <div class="product-carousel-container">
-                <amp-carousel id="productCarousel" type="carousel" height="400" layout="fixed-height" controls
-                    class="custom-nav-arrows">
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=fabrication"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
 
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=fabrication"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Ajouter aux favoris">
-                                            <svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg>
-                                        </button>
-                                        <a href="{{payment_link}}" class="btn-action">Acheter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Acheter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
 
         <section style="margin-top:40px">
             <h2 class="section-title">Location et Vente (Lourd)</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=lourd"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=lourd"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Consulter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
+
 
 
         <section style="margin-top:40px">
             <h2 class="section-title">Electromenagers</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=neufs"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=neufs"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Acheter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Consulter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
 
-        <section style="margin-top:40px">
-            <h2 class="section-title">Unité Complète</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls
-                    class="custom-nav-arrows pack-carousel">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card-horizontal">
-                                <div class="p-badge">{{status_label}}</div>
 
-                                <div class="pack-img-wrapper">
-                                    <amp-img src="{{imageUrl}}" width="450" height="300" layout="responsive"></amp-img>
+  <section style="margin-top:40px">
+    <h2 class="section-title">Unité Complète</h2>
+
+    <div class="scroll-container-wrapper">
+        <button class="nav-arrow arrow-prev" on="tap:packs-list.scrollTo(box='left')" aria-label="Précédent">❮</button>
+
+        <div class="horizontal-scroll" id="packs-list">
+            <amp-list class="product-list-horizontal-packs"
+                src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
+                layout="fixed-height" height="340" items="items">
+                <template type="amp-mustache">
+                    <div class="p-card-dual-block">
+                        <div class="p-badge">{{status_label}}</div>
+                        
+                        <div class="pack-img-side">
+                            <amp-img src="{{imageUrl}}" width="450" height="300" layout="fixed" alt="{{name}}"></amp-img>
+                        </div>
+
+                        <div class="pack-content-side">
+                            <div class="content-wrapper">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title-pack">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <svg class="check-icon" viewBox="0 0 24 24" width="16" height="16">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                    <span>{{brand}}</span>
                                 </div>
 
-                                <div class="pack-content">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title" style="font-size: 18px; height: auto;">{{name}}</h3>
-                                    </a>
+                                <div class="p-price-pack">{{price_value}} FCFA</div>
 
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}} : </span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer-pack">
+                                    <a href="{{payment_link}}" class="btn-action-pack">Commander le Pack</a>
+                                    <button class="btn-wish-square" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24" width="20" height="20">
+                                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-
-                                    <div class="p-price-row">
-                                        <span class="p-price" style="font-size: 22px;">{{price_value}} Fcfa</span>
-                                    </div>
-
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris">
-                                            <svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg>
-                                        </button>
-                                        <a href="{{payment_link}}" class="btn-action"
-                                            style="background-color: var(--accent-orange);">Commander le Pack</a>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
-            </div>
-        </section>
+                        </div>
+                    </div>
+                </template>
+            </amp-list>
+        </div>
 
+        <button class="nav-arrow arrow-next" on="tap:packs-list.scrollTo(box='right')" aria-label="Suivant">❯</button>
+    </div>
+</section>
 
         <section style="margin-top:40px">
             <h2 class="section-title">Informatique</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=informatique"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=informatique"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Acheter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
 
+
         <section style="margin-top:40px">
             <h2 class="section-title">Immobilier</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=immobilier"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=immobilier"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Consulter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
 
 
         <section style="margin-top:40px">
             <h2 class="section-title">Monetique</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=services"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=services"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Consulter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
 
 
         <section style="margin-top:40px">
             <h2 class="section-title">Quincaillerie Generale</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=quincaillerie"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=quincaillerie"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Consulter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
 
 
         <section style="margin-top:40px">
             <h2 class="section-title">Divers</h2>
-            <div class="product-carousel-container">
-                <amp-carousel type="carousel" height="400" layout="fixed-height" controls class="custom-nav-arrows">
-                    <amp-list class="product-list-horizontal" src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=divers"
-                        layout="fill" items="items">
-                        <template type="amp-mustache">
-                            <div class="p-card">
-                                <div class="p-badge">{{status_label}}</div>
-                                <amp-img src="{{imageUrl}}" width="300" height="200" layout="responsive"></amp-img>
-                                <div class="p-body">
-                                    <a href="{{payment_link}}" class="p-title-link">
-                                        <h3 class="p-title">{{name}}</h3>
-                                    </a>
-                                    <div class="p-brand">
-                                        <span>{{brand}}</span>
-                                        <svg class="check-icon" viewBox="0 0 24 24">
-                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+
+            <div class="horizontal-scroll-wrapper">
+                <amp-list class="product-list-enhanced"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=divers"
+                    layout="fixed-height" height="420" items="items">
+                    <template type="amp-mustache">
+                        <div class="p-card-enhanced">
+                            <div class="p-badge">{{status_label}}</div>
+                            <div class="p-img-container">
+                                <amp-img src="{{imageUrl}}" width="280" height="200" layout="responsive"
+                                    alt="{{name}}"></amp-img>
+                            </div>
+
+                            <div class="p-body">
+                                <a href="{{payment_link}}" class="p-title-link">
+                                    <h3 class="p-title">{{name}}</h3>
+                                </a>
+
+                                <div class="p-brand">
+                                    <span>{{brand}}</span>
+                                    <svg class="check-icon" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                    </svg>
+                                </div>
+
+                                <div class="p-price-row">
+                                    <span class="p-price">{{price_value}} Fcfa</span>
+                                    <span class="p-count">{{product_count}}</span>
+                                </div>
+
+                                <div class="p-info-row">
+                                    <span class="label">{{info_label}}</span>
+                                    <span class="value">{{info_value}}</span>
+                                </div>
+
+                                <div class="p-footer">
+                                    <button class="btn-wishlist" aria-label="Favoris">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
-                                    </div>
-                                    <div class="p-price-row">
-                                        <span class="p-price">{{price_value}} Fcfa</span>
-                                        <span class="p-count">{{product_count}}</span>
-                                    </div>
-                                    <div class="p-info-row">
-                                        <span class="label">{{info_label}}</span>
-                                        <span class="value">{{info_value}}</span>
-                                    </div>
-                                    <div class="p-footer">
-                                        <button class="btn-wishlist" aria-label="Favoris"><svg viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                            </svg></button>
-                                        <a href="{{payment_link}}" class="btn-action">Consulter</a>
-                                    </div>
+                                    </button>
+                                    <a href="{{payment_link}}" class="btn-action">Consulter</a>
                                 </div>
                             </div>
-                        </template>
-                    </amp-list>
-                </amp-carousel>
+                        </div>
+                    </template>
+                </amp-list>
             </div>
         </section>
-
-
     </main>
 
     <footer class="footer">
