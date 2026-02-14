@@ -1,0 +1,8 @@
+{
+  "name": "Abidjan Solution Admin Pro",
+  "description": "Système de gestion de contenu avec RBAC pour Abidjan Solution.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules",
+    "cors": "cors.json"
+  },
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "rewrites": [
+      { "source": "/api/getProducts", "function": "getProducts" },
+      { "source": "/api/getPartners", "function": "getPartners" },
+      { "source": "/api/getProductById", "function": "getProductById" },
+      { "source": "/api/getCategories", "function": "getCategories" },
+      { "source": "/api/getHeroSlides", "function": "getHeroSlides" },
+      { "source": "/api/getSiteConfig", "function": "getSiteConfig" },
+      { "source": "/api/saveLeadAndNotify", "function": "saveLeadAndNotify" },
+      { "source": "/api/validatePromoCode", "function": "validatePromoCode" }
+    ]
+  }
+}
