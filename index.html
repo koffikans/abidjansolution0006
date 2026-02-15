@@ -284,7 +284,7 @@
 
         /* === STYLES MOBILES ET TABLETTES (< 992px) === */
         @media (max-width: 991px) {
-
+		
             body .desktop-only,
             body .mobile-hide {
                 display: none;
@@ -727,7 +727,7 @@
         /* Conteneur principal de défilement */
         .horizontal-scroll-wrapper {
             width: 100%;
-            overflow-x: auto;
+            overflow-x: hidden;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -742,12 +742,18 @@
 
         /* Configuration de la liste AMP */
         .product-list-enhanced div[role="list"] {
-            display: flex;
-            gap: 15px;
-            padding: 0 5px;
-            scroll-snap-type: x mandatory;
-            /* Active l'aimantage horizontal */
-        }
+    display: flex;
+    gap: 15px;
+    padding: 0 5px;
+    /* Supprimer : scroll-snap-type */
+    width: max-content; /* Force la liste à s'étendre sur une ligne */
+    animation: scroll-articles 40s linear infinite; /* Active le défilement */
+}
+
+/* Optionnel : Stopper le défilement au survol de la souris */
+.product-list-enhanced div[role="list"]:hover {
+    animation-play-state: paused;
+}
 
         /* La Carte Produit */
         .p-card-enhanced {
@@ -1145,6 +1151,12 @@
             transition: transform 0.3s ease;
             object-fit: contain;
         }
+		
+		/* Zone à créer en fin de style custom */
+@keyframes scroll-articles {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Défilement de la moitié de la largeur */
+}
     </style>
     <script type="application/ld+json">
 {
