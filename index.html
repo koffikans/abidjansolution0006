@@ -78,7 +78,16 @@
             }
         }
     </style>
-
+    <noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style>
+    </noscript>
     <style amp-custom>
         :root {
             --main-green: #008060;
@@ -284,7 +293,7 @@
 
         /* === STYLES MOBILES ET TABLETTES === */
         @media (max-width: 991px) {
-		
+
             body .desktop-only,
             body .mobile-hide {
                 display: none;
@@ -742,18 +751,20 @@
 
         /* Configuration de la liste AMP */
         .product-list-enhanced div[role="list"] {
-    display: flex;
-    gap: 15px;
-    padding: 0 5px;
-    /* Supprimer : scroll-snap-type */
-    width: max-content; /* Force la liste à s'étendre sur une ligne */
-    animation: scroll-articles 40s linear infinite; /* Active le défilement */
-}
+            display: flex;
+            gap: 15px;
+            padding: 0 5px;
+            /* Supprimer : scroll-snap-type */
+            width: max-content;
+            /* Force la liste à s'étendre sur une ligne */
+            animation: scroll-articles 40s linear infinite;
+            /* Active le défilement */
+        }
 
-/* Optionnel : Stopper le défilement au survol de la souris */
-.product-list-enhanced div[role="list"]:hover {
-    animation-play-state: paused;
-}
+        /* Optionnel : Stopper le défilement au survol de la souris */
+        .product-list-enhanced div[role="list"]:hover {
+            animation-play-state: paused;
+        }
 
         /* La Carte Produit */
         .p-card-enhanced {
@@ -900,152 +911,174 @@
         }
 
 
-/* --- Mise en page du conteneur de défilement --- */
-.scroll-container-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
+        /* --- Mise en page du conteneur de défilement --- */
+        .scroll-container-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
 
-.horizontal-scroll {
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-.horizontal-scroll::-webkit-scrollbar { display: none; }
+        .horizontal-scroll {
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
 
-.product-list-horizontal-packs div[role="list"] {
-    display: flex;
-    gap: 15px;
-    padding: 0;
-}
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
 
-/* --- LA CARTE DOUBLE (2 blocs de 450x300) --- */
-.p-card-dual-block {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    overflow: hidden;
-    height: 300px;    /* Hauteur stricte de l'image */
-    flex: 0 0 900px;  /* Largeur totale = 450 (img) + 450 (texte) */
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    scroll-snap-align: start;
-}
+        .product-list-horizontal-packs div[role="list"] {
+            display: flex;
+            gap: 15px;
+            padding: 0;
+        }
 
-/* Bloc Gauche (Image) */
-.pack-img-side {
-    flex: 0 0 450px;
-    width: 450px;
-    height: 300px;
-}
-.pack-img-side amp-img img { object-fit: cover; }
+        /* --- LA CARTE DOUBLE (2 blocs de 450x300) --- */
+        .p-card-dual-block {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 300px;
+            /* Hauteur stricte de l'image */
+            flex: 0 0 900px;
+            /* Largeur totale = 450 (img) + 450 (texte) */
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            scroll-snap-align: start;
+        }
 
-/* Bloc Droit (Texte) */
-.pack-content-side {
-    flex: 0 0 450px;
-    width: 450px;
-    height: 300px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-}
+        /* Bloc Gauche (Image) */
+        .pack-img-side {
+            flex: 0 0 450px;
+            width: 450px;
+            height: 300px;
+        }
 
-.content-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+        .pack-img-side amp-img img {
+            object-fit: cover;
+        }
 
-.p-title-pack {
-    font-size: 20px;
-    font-weight: 800;
-    color: #333;
-    margin: 0;
-    line-height: 1.2;
-}
+        /* Bloc Droit (Texte) */
+        .pack-content-side {
+            flex: 0 0 450px;
+            width: 450px;
+            height: 300px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
 
-.p-price-pack {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--accent-orange);
-}
+        .content-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-.p-footer-pack {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 5px;
-}
+        .p-title-pack {
+            font-size: 20px;
+            font-weight: 800;
+            color: #333;
+            margin: 0;
+            line-height: 1.2;
+        }
 
-.btn-action-pack {
-    background: var(--main-green);
-    color: white;
-    flex: 1;
-    text-align: center;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 15px;
-}
+        .p-price-pack {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent-orange);
+        }
 
-.btn-wish-square {
-    border: 1px solid #ddd;
-    background: white;
-    width: 45px;
-    height: 45px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    cursor: pointer;
-}
+        .p-footer-pack {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
 
-/* --- FLÈCHES DE NAVIGATION --- */
-.nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: white;
-    border: 1px solid #ddd;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    z-index: 10;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--main-green);
-    font-size: 20px;
-}
-.arrow-prev { left: -24px; }
-.arrow-next { right: -24px; }
+        .btn-action-pack {
+            background: var(--main-green);
+            color: white;
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
 
-/* --- ADAPTATION MOBILE --- */
-@media (max-width: 950px) {
-    .p-card-dual-block {
-        flex: 0 0 300px;
-        flex-direction: column;
-        height: auto;
-    }
-    .pack-img-side, .pack-content-side {
-        flex: 0 0 auto;
-        width: 100%;
-        height: auto;
-    }
-    .pack-content-side { padding: 20px; }
-    .nav-arrow { display: none; }
-}
+        .btn-wish-square {
+            border: 1px solid #ddd;
+            background: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            cursor: pointer;
+        }
+
+        /* --- FLÈCHES DE NAVIGATION --- */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 1px solid #ddd;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--main-green);
+            font-size: 20px;
+        }
+
+        .arrow-prev {
+            left: -24px;
+        }
+
+        .arrow-next {
+            right: -24px;
+        }
+
+        /* --- ADAPTATION MOBILE --- */
+        @media (max-width: 950px) {
+            .p-card-dual-block {
+                flex: 0 0 300px;
+                flex-direction: column;
+                height: auto;
+            }
+
+            .pack-img-side,
+            .pack-content-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: auto;
+            }
+
+            .pack-content-side {
+                padding: 20px;
+            }
+
+            .nav-arrow {
+                display: none;
+            }
+        }
 
         /* Footer */
         .footer {
@@ -1151,12 +1184,19 @@
             transition: transform 0.3s ease;
             object-fit: contain;
         }
-		
-		/* Zone à créer en fin de style custom */
-@keyframes scroll-articles {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Défilement de la moitié de la largeur */
-}
+
+        /* Zone à créer en fin de style custom */
+        @keyframes scroll-articles {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+
+            /* Défilement de la moitié de la largeur */
+        }
     </style>
     <script type="application/ld+json">
 {
@@ -1293,22 +1333,6 @@
   ]
 }
 </script>
-    <script type="importmap">
-{
-  "imports": {
-    "path": "https://esm.sh/path@^0.12.7",
-    "vite": "https://esm.sh/vite@^7.3.1",
-    "firebase/": "https://esm.sh/firebase@^12.8.0/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3",
-    "url": "https://esm.sh/url@^0.11.4"
-  }
-}
-</script>
-    <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>
@@ -1839,60 +1863,62 @@
         </section>
 
 
-  <section style="margin-top:10px">
-    <h2 class="section-title">Unité Complète</h2>
+        <section style="margin-top:10px">
+            <h2 class="section-title">Unité Complète</h2>
 
-    <div class="scroll-container-wrapper">
+            <div class="scroll-container-wrapper">
 
-        <div class="horizontal-scroll" id="packs-list">
-            <amp-list class="product-list-horizontal-packs"
-                src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
-                layout="fixed-height" height="340" items="items">
-                <template type="amp-mustache">
-                    <div class="p-card-dual-block">
-                        <div class="p-badge">{{status_label}}</div>
-                        
-                        <div class="pack-img-side">
-                            <amp-img src="{{imageUrl}}" width="450" height="300" layout="fixed" alt="{{name}}"></amp-img>
-                        </div>
+                <div class="horizontal-scroll" id="packs-list">
+                    <amp-list class="product-list-horizontal-packs"
+                        src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
+                        layout="fixed-height" height="340" items="items">
+                        <template type="amp-mustache">
+                            <div class="p-card-dual-block">
+                                <div class="p-badge">{{status_label}}</div>
 
-                        <div class="pack-content-side">
-                            <div class="content-wrapper">
-                                <a href="{{payment_link}}" class="p-title-link">
-                                    <h3 class="p-title-pack">{{name}}</h3>
-                                </a>
-
-                                <div class="p-brand">
-                                    <svg class="check-icon" viewBox="0 0 24 24" width="16" height="16">
-                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                                    </svg>
-                                    <span>{{brand}}</span>
+                                <div class="pack-img-side">
+                                    <amp-img src="{{imageUrl}}" width="450" height="300" layout="fixed"
+                                        alt="{{name}}"></amp-img>
                                 </div>
 
-                                <div class="p-price-pack">{{price_value}} FCFA</div>
+                                <div class="pack-content-side">
+                                    <div class="content-wrapper">
+                                        <a href="{{payment_link}}" class="p-title-link">
+                                            <h3 class="p-title-pack">{{name}}</h3>
+                                        </a>
 
-                                <div class="p-info-row">
-                                    <span class="label">{{info_label}} : </span>
-                                    <span class="value">{{info_value}}</span>
-                                </div>
+                                        <div class="p-brand">
+                                            <svg class="check-icon" viewBox="0 0 24 24" width="16" height="16">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                            </svg>
+                                            <span>{{brand}}</span>
+                                        </div>
 
-                                <div class="p-footer-pack">
-                                    <a href="{{payment_link}}" class="btn-action-pack">Commander le Pack</a>
-                                    <button class="btn-wish-square" aria-label="Favoris">
-                                        <svg viewBox="0 0 24 24" width="20" height="20">
-                                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                        </svg>
-                                    </button>
+                                        <div class="p-price-pack">{{price_value}} FCFA</div>
+
+                                        <div class="p-info-row">
+                                            <span class="label">{{info_label}} : </span>
+                                            <span class="value">{{info_value}}</span>
+                                        </div>
+
+                                        <div class="p-footer-pack">
+                                            <a href="{{payment_link}}" class="btn-action-pack">Commander le Pack</a>
+                                            <button class="btn-wish-square" aria-label="Favoris">
+                                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                                    <path
+                                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </template>
-            </amp-list>
-        </div>
+                        </template>
+                    </amp-list>
+                </div>
 
-    </div>
-</section>
+            </div>
+        </section>
 
         <section style="margin-top:10px">
             <h2 class="section-title">Informatique</h2>
@@ -2300,8 +2326,6 @@
             <p>&copy; 2024 Abidjan Solution. Tous droits réservés.</p>
         </div>
     </footer>
-
-    <script type="module" src="/index.tsx"></script>
 </body>
 
 </html>
