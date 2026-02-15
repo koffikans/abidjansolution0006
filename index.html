@@ -727,7 +727,7 @@
         /* Conteneur principal de défilement */
         .horizontal-scroll-wrapper {
             width: 100%;
-            overflow-x: hidden;
+            overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -745,9 +745,8 @@
     display: flex;
     gap: 15px;
     padding: 0 5px;
-    /* Supprimer : scroll-snap-type */
-    width: max-content; /* Force la liste à s'étendre sur une ligne */
-    animation: scroll-articles 40s linear infinite; /* Active le défilement */
+    scroll-snap-type: x mandatory; /* Active l'aimantage horizontal */
+    width: auto; /* Important : retirer le max-content si vous l'aviez mis */
 }
 
 /* Optionnel : Stopper le défilement au survol de la souris */
@@ -770,6 +769,7 @@
             scroll-snap-align: start;
             /* Position d'arrêt de l'aimantage */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			scroll-snap-align: start; /* La carte s'aligne au début du conteneur */
         }
 
         /* Fix pour l'affichage de l'image */
@@ -1151,12 +1151,6 @@
             transition: transform 0.3s ease;
             object-fit: contain;
         }
-		
-		/* Zone à créer en fin de style custom */
-@keyframes scroll-articles {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Défilement de la moitié de la largeur */
-}
     </style>
     <script type="application/ld+json">
 {
