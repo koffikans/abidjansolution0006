@@ -914,7 +914,7 @@
 .product-list-horizontal-packs div[role="list"] {
     display: flex;
     gap: 15px;
-    padding: 5px 0;
+    padding: 0;
 }
 
 /* --- LA CARTE DOUBLE (2 blocs de 450x300) --- */
@@ -1836,7 +1836,7 @@
         <div class="horizontal-scroll" id="packs-list">
             <amp-list class="product-list-horizontal-packs"
                 src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
-                layout="fixed-height" height="550" items="items">
+                layout="fixed-height" height="340" items="items">
                 <template type="amp-mustache">
                     <div class="p-card-dual-block">
                         <div class="p-badge">{{status_label}}</div>
