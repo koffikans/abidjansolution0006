@@ -727,7 +727,7 @@
         /* Conteneur principal de défilement */
         .horizontal-scroll-wrapper {
             width: 100%;
-            overflow-x: auto;
+            overflow-x: hidden;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -745,8 +745,9 @@
     display: flex;
     gap: 15px;
     padding: 0 5px;
-    scroll-snap-type: x mandatory; /* Active l'aimantage horizontal */
-    width: auto; /* Important : retirer le max-content si vous l'aviez mis */
+    /* Supprimer : scroll-snap-type */
+    width: max-content; /* Force la liste à s'étendre sur une ligne */
+    animation: scroll-articles 40s linear infinite; /* Active le défilement */
 }
 
 /* Optionnel : Stopper le défilement au survol de la souris */
@@ -769,7 +770,6 @@
             scroll-snap-align: start;
             /* Position d'arrêt de l'aimantage */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-			scroll-snap-align: start; /* La carte s'aligne au début du conteneur */
         }
 
         /* Fix pour l'affichage de l'image */
@@ -1151,6 +1151,7 @@
             transition: transform 0.3s ease;
             object-fit: contain;
         }
+		
 		/* Zone à créer en fin de style custom */
 @keyframes scroll-articles {
     0% { transform: translateX(0); }
@@ -1842,7 +1843,6 @@
     <h2 class="section-title">Unité Complète</h2>
 
     <div class="scroll-container-wrapper">
-        <button class="nav-arrow arrow-prev" on="tap:packs-list.scrollTo(box='left')" aria-label="Précédent">❮</button>
 
         <div class="horizontal-scroll" id="packs-list">
             <amp-list class="product-list-horizontal-packs"
@@ -1891,7 +1891,6 @@
             </amp-list>
         </div>
 
-        <button class="nav-arrow arrow-next" on="tap:packs-list.scrollTo(box='right')" aria-label="Suivant">❯</button>
     </div>
 </section>
 
