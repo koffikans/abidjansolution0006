@@ -998,7 +998,6 @@
             width: max-content;
         }
 
-        /* --- LA CARTE DOUBLE (2 blocs de 450x300) --- */
         .p-card-dual-block {
             background: white;
             border: 1px solid #e0e0e0;
@@ -1010,6 +1009,8 @@
             /* Largeur totale = 450 (img) + 450 (texte) */
             display: flex;
             flex-direction: row;
+            /* Image à gauche, texte à droite */
+            width: 900px;
             position: relative;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             scroll-snap-align: start;
@@ -1028,10 +1029,11 @@
 
         /* Bloc Droit (Texte) */
         .pack-content-side {
-            flex: 0 0 450px;
+            flex: 1;
+            /* Prend le reste de l'espace */
             width: 450px;
             height: 300px;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             align-items: center;
         }
@@ -1118,22 +1120,32 @@
         }
 
         /* --- ADAPTATION MOBILE --- */
-        @media (max-width: 950px) {
+        @media (max-width: 767px) {
             .p-card-dual-block {
-                flex: 0 0 300px;
                 flex-direction: column;
+                /* Empilement vertical : Image en haut, texte en bas */
+                width: 320px;
+                /* Largeur réduite pour mobile */
                 height: auto;
+                /* La hauteur s'adapte au contenu */
+                flex: 0 0 320px;
             }
 
-            .pack-img-side,
-            .pack-content-side {
-                flex: 0 0 auto;
+            .pack-img-side {
                 width: 100%;
-                height: auto;
+                height: 200px;
+                /* Hauteur réduite pour l'image sur mobile */
+                flex: none;
             }
 
             .pack-content-side {
-                padding: 20px;
+                width: 100%;
+                padding: 15px;
+            }
+
+            /* Ajuster la taille des titres pour mobile */
+            .p-title-pack {
+                font-size: 16px;
             }
 
             .nav-arrow {
@@ -1898,13 +1910,13 @@
                 <div class="horizontal-scroll" id="packs-list">
                     <amp-list class="product-list-horizontal-packs"
                         src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
-                        layout="fixed-height" height="340" items="items">
+                        layout="fixed-height" height="460" items="items">
                         <template type="amp-mustache">
                             <div class="p-card-dual-block">
                                 <div class="p-badge">{{status_label}}</div>
 
                                 <div class="pack-img-side">
-                                    <amp-img src="{{imageUrl}}" width="450" height="300" layout="fixed"
+                                    <amp-img src="{{imageUrl}}" width="450" height="300" layout="responsive"
                                         alt="{{name}}"></amp-img>
                                 </div>
 
