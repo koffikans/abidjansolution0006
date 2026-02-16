@@ -19,6 +19,7 @@
     <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
 
     <style amp-boilerplate>
         body {
@@ -490,30 +491,18 @@
             }
         }
 
-        /* === HERO TABS (ONGLETS) === */
-        .hero-tab-container {
-            margin-top: 20px;
-        }
-
-        .hero-tab-nav {
+        /* Styles pour les onglets avec amp-selector */
+        amp-selector.hero-tab-nav {
             display: flex;
             list-style: none;
             padding: 0;
-            margin: 0;
-            margin-bottom: -1px;
+            margin: 0 0 -1px 0;
             position: relative;
             z-index: 2;
         }
 
-        .hero-tab-nav .tab-item {
+        amp-selector.hero-tab-nav [role=tab] {
             position: relative;
-        }
-
-        .hero-tab-nav .tab-item:not(:first-child) {
-            margin-left: -20px;
-        }
-
-        .hero-tab-nav .tab-item a {
             display: block;
             padding: 12px 30px;
             background-color: var(--light-gray);
@@ -525,23 +514,27 @@
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
+            margin: 0;
         }
 
-        .hero-tab-nav .tab-item.active {
-            z-index: 5;
+        amp-selector.hero-tab-nav [role=tab]:not(:first-child) {
+            margin-left: -20px;
         }
 
-        .hero-tab-nav .tab-item.active a {
+        amp-selector.hero-tab-nav [role=tab][selected] {
             background-color: white;
             color: var(--accent-orange);
             padding-bottom: 13px;
+            z-index: 5;
+            outline: none;
         }
 
-        .hero-tab-nav .tab-item:not(.active) a:hover {
+        amp-selector.hero-tab-nav [role=tab]:not([selected]):hover {
             background-color: #e2e6ea;
         }
 
-        .hero-tab-content-wrapper {
+        /* Conteneur des panneaux */
+        amp-selector.hero-tab-content-wrapper {
             border: 1px solid var(--border-color);
             border-radius: 5px;
             border-top-left-radius: 0;
@@ -549,69 +542,68 @@
             position: relative;
             z-index: 1;
             background: white;
+            display: block;
         }
 
-        /* Carousel Buttons */
-        .hero-tab-content-wrapper .amp-carousel-button {
-            background: var(--accent-orange);
-            border-radius: 50%;
-            opacity: 0.8;
-            width: 44px;
-            height: 44px;
+        amp-selector.hero-tab-content-wrapper [role=tabpanel] {
+            display: none;
         }
 
-        .hero-tab-content-wrapper .amp-carousel-button:hover {
-            background-color: var(--main-green);
-            opacity: 1;
+        amp-selector.hero-tab-content-wrapper [role=tabpanel][selected] {
+            display: block;
         }
 
-        /* TABS RESPONSIVE MOBILE - HORIZONTAL SCROLL */
+        /* Permet aux éléments générés par amp-list d'être des enfants directs du carrousel */
+        .slides-list {
+            display: contents;
+        }
+
+        amp-carousel amp-list[layout=container] {
+            display: contents;
+        }
+
+        /* Version mobile des onglets */
         @media (max-width: 767px) {
-            .hero-tab-nav {
+            amp-selector.hero-tab-nav {
                 display: flex;
                 flex-direction: row;
                 overflow-x: auto;
                 white-space: nowrap;
                 -webkit-overflow-scrolling: touch;
                 margin: 0 -15px 15px -15px;
-                /* Pleine largeur avec marge négative */
                 padding: 5px 15px;
                 border-bottom: none;
                 scrollbar-width: none;
             }
 
-            .hero-tab-nav::-webkit-scrollbar {
+            amp-selector.hero-tab-nav::-webkit-scrollbar {
                 display: none;
             }
 
-            .hero-tab-nav .tab-item {
-                margin: 0 10px 0 0;
-                width: auto;
-                flex-shrink: 0;
-            }
+            amp-selector.hero-tab-nav [role=tab] {
+    margin: 0; 
+    margin-left: -1px; 
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 8px 8px 0 0; 
+    text-align: center;
+    border: 1px solid var(--border-color);
+    background: var(--light-gray); 
+    padding: 12px 20px;
+    font-size: 14px;
+}
 
-            .hero-tab-nav .tab-item a {
-                border-radius: 20px;
-                text-align: center;
-                border: 1px solid #e0e0e0;
-                background: white;
-                padding: 8px 16px;
-                font-size: 14px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            }
-
-            .hero-tab-nav .tab-item.active a {
+            amp-selector.hero-tab-nav [role=tab][selected] {
                 background-color: var(--main-green);
                 color: white;
                 border-color: var(--main-green);
-                padding-bottom: 8px;
-            }
-
-            .hero-tab-content-wrapper {
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
+                border-bottom: 1px solid white; 
+    padding-bottom: 13px; 
+    z-index: 5;
             }
         }
+
+
 
         .carousel-slide-container {
             position: relative;
@@ -733,15 +725,13 @@
             }
         }
 
-        /* Conteneur principal de défilement */
+        /* Conteneur principal qui contient l'amp-list et la flèche */
         .horizontal-scroll-wrapper {
+            position: relative;
             width: 100%;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            /* Cache la scrollbar sur Firefox */
             padding: 10px 0;
+            overflow: hidden;
+            /* Empêche les barres de défilement ici */
         }
 
         .horizontal-scroll-wrapper::-webkit-scrollbar {
@@ -749,21 +739,66 @@
             /* Cache la scrollbar sur Chrome/Safari */
         }
 
-        /* Configuration de la liste AMP */
+        /* Indicateur de défilement (Flèche) */
+        .horizontal-scroll-wrapper::after {
+            content: "→";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--main-green);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.8;
+            border: 1px solid #eee;
+            animation: hintMove 2s infinite;
+        }
+
+        @keyframes hintMove {
+
+            0%,
+            100% {
+                transform: translate(0, -50%);
+            }
+
+            50% {
+                transform: translate(-8px, -50%);
+            }
+        }
+
+        /* Configuration de l'amp-list pour permettre le défilement */
+        .product-list-enhanced {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .product-list-enhanced::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Liste interne qui porte les cartes */
         .product-list-enhanced div[role="list"] {
             display: flex;
             gap: 15px;
             padding: 0 5px;
-            /* Supprimer : scroll-snap-type */
             width: max-content;
-            /* Force la liste à s'étendre sur une ligne */
-            animation: scroll-articles 40s linear infinite;
-            /* Active le défilement */
-        }
-
-        /* Optionnel : Stopper le défilement au survol de la souris */
-        .product-list-enhanced div[role="list"]:hover {
-            animation-play-state: paused;
+            /* Obligatoire pour dépasser horizontalement */
         }
 
         /* La Carte Produit */
@@ -919,12 +954,37 @@
             width: 100%;
         }
 
+        .scroll-container-wrapper::after {
+            content: "→";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--main-green);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.8;
+            border: 1px solid #eee;
+            animation: hintMove 2s infinite;
+        }
+
         .horizontal-scroll {
             width: 100%;
             overflow-x: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            scroll-snap-type: x mandatory;
         }
 
         .horizontal-scroll::-webkit-scrollbar {
@@ -935,6 +995,7 @@
             display: flex;
             gap: 15px;
             padding: 0;
+            width: max-content;
         }
 
         /* --- LA CARTE DOUBLE (2 blocs de 450x300) --- */
@@ -1080,6 +1141,65 @@
             }
         }
 
+        /* Styles pour la section d'informations */
+        .site-info-section {
+            background-color: var(--main-green);
+            color: white;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-col h4 {
+            color: var(--accent-orange);
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .info-col p {
+            margin: 8px 0;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+
         /* Footer */
         .footer {
             background: var(--main-green);
@@ -1088,73 +1208,31 @@
             margin-top: 20px;
         }
 
-        .footer .container-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .footer .container-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .footer .container-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .footer-about {
-                grid-column: span 2;
-            }
-        }
-
         .footer-title {
             font-size: 18px;
             color: white;
-            margin: 0 0 15px;
+            margin: 20px 0 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--accent-orange);
             display: inline-block;
         }
 
-        .footer ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
+
+        .partners-section {
+            background-color: var(--main-green);
+            padding: 30px 0;
+            margin-top: 20px;
         }
 
-        .footer ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer a {
-            text-decoration: none;
-            color: #ccc;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
+        .partners-title {
+            text-align: center;
             color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
 
-        .footer-contact-info li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .footer-contact-info svg {
-            flex-shrink: 0;
-            width: 16px;
-            margin-top: 4px;
-            color: var(--accent-orange);
-        }
-
-        /* Partners */
         .partner-logo-wrapper {
             overflow: hidden;
             padding: 0.25rem 0;
@@ -1184,6 +1262,13 @@
             transition: transform 0.3s ease;
             object-fit: contain;
         }
+
+        /* Optionnel : stopper l'animation au survol */
+        .partner-logo-scroller:hover {
+            animation-play-state: paused;
+        }
+
+
 
         /* Zone à créer en fin de style custom */
         @keyframes scroll-articles {
@@ -1399,12 +1484,11 @@
             }
         </script>
     </amp-state>
-    <amp-state id="tabCarousel">
-        <script type="application/json">{ "active": "tab1" }</script>
-    </amp-state>
     <amp-state id="socialFabState">
         <script type="application/json">{ "isOpen": false }</script>
     </amp-state>
+    <amp-state id="heroSlides"
+        src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=heroslides"></amp-state>
 
     <header>
         <div class="top-bar">
@@ -1498,163 +1582,106 @@
             <section>
                 <div class="content-main">
                     <div class="hero-tab-container">
-                        <ul class="hero-tab-nav">
-                            <li class="tab-item" [class]="'tab-item ' + (tabCarousel.active == 'tab1' ? 'active' : '')">
-                                <a on="tap:AMP.setState({tabCarousel: {active: 'tab1'}})">Fabrication Locale</a>
-                            </li>
-                            <li class="tab-item" [class]="'tab-item ' + (tabCarousel.active == 'tab2' ? 'active' : '')">
-                                <a on="tap:AMP.setState({tabCarousel: {active: 'tab2'}})">Articles Neufs</a>
-                            </li>
-                            <li class="tab-item" [class]="'tab-item ' + (tabCarousel.active == 'tab3' ? 'active' : '')">
-                                <a on="tap:AMP.setState({tabCarousel: {active: 'tab3'}})">Articles Seconde Main</a>
-                            </li>
-                        </ul>
-                        <div class="hero-tab-content-wrapper">
-                            <div class="hero-tab-content" [hidden]="tabCarousel.active != 'tab1'">
-                                <amp-carousel id="carousel1" width="800" height="450" layout="responsive" type="slides"
-                                    loop autoplay delay="5000">
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-broyeuse-electrique-simple-unique-800x450.webp?alt=media&token=1e4dc29e-738b-42a4-982b-828a6a4c4792"
-                                            alt="Broyeuse électrique de fabrication locale" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Broyeuse Électrique de Manioc</h3>
-                                            <p class="slide-price">950,000 Fcfa</p>
-                                            <a href="payment.html?name=Broyeuse%20%C3%89lectrique%20de%20Manioc&price=950,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-broyeur-inox-attieke-manio-800x450.webp?alt=media&token=a267ce66-0829-446a-9ced-6b3e62609eb4"
-                                            alt="Broyeur en inox pour attiéké et manioc" layout="responsive" width="800"
-                                            height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Presse à Huile Manuelle Inox</h3>
-                                            <p class="slide-price">500,000 Fcfa</p>
-                                            <a href="payment.html?name=Presse%20%C3%A0%20Huile%20Manuelle%20Inox&price=500,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-broyeur-melangeur-et-accessoires-800x450.webp?alt=media&token=623c6155-c64a-44b2-91b4-ec3283df0c78"
-                                            alt="Broyeur mélangeur industriel et ses accessoires" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Broyeur Mélangeur Industriel</h3>
-                                            <p class="slide-price">1,200,000 Fcfa</p>
-                                            <a href="payment.html?name=Broyeur%20M%C3%A9langeur%20Industriel&price=1,200,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <button on="tap:carousel1.prev()"
+                        <!-- Barre d'onglets avec amp-selector -->
+                        <amp-selector class="hero-tab-nav" role="tablist"
+                            on="select:heroTabPanels.toggle(index=event.targetOption, value=true)"
+                            keyboard-select-mode="focus">
+                            <div id="heroTab1" role="tab" aria-controls="heroTabPanel1" option="0" selected>Fabrication
+                                Locale</div>
+                            <div id="heroTab2" role="tab" aria-controls="heroTabPanel2" option="1">Articles Neufs</div>
+                            <div id="heroTab3" role="tab" aria-controls="heroTabPanel3" option="2">Articles Seconde Main
+                            </div>
+                        </amp-selector>
+
+                        <!-- Panneaux d'onglets avec amp-selector -->
+                        <amp-selector id="heroTabPanels" class="hero-tab-content-wrapper">
+                            <!-- Panneau 1 : Fabrication Locale (tab1) -->
+                            <div id="heroTabPanel1" role="tabpanel" aria-labelledby="heroTab1" option selected>
+                                <amp-carousel id="heroCarousel1" width="800" height="450" layout="responsive"
+                                    type="slides" loop autoplay delay="5000">
+                                    <amp-list layout="fixed-height" height="450"
+                                        [src]="heroSlides.items ? heroSlides.items.filter(s => s.tab == 'tab1') : []"
+                                        items="." class="slides-list">
+                                        <template type="amp-mustache">
+                                            <div class="carousel-slide-container">
+                                                <amp-img src="{{imageUrl}}" alt="{{title}}" layout="responsive"
+                                                    width="{{imgWidth}}" height="{{imgHeight}}"></amp-img>
+                                                <div class="slide-overlay">
+                                                    <h3 class="slide-title">{{title}}</h3>
+                                                    <p class="slide-price">{{price}} {{currency}}</p>
+                                                    <a href="{{payment_link}}" class="slide-cta">Voir l'offre</a>
+                                                </div>
+                                            </div>
+                                        </template>
+                                        <div overflow class="list-overflow">Voir plus</div>
+                                    </amp-list>
+                                    <button on="tap:heroCarousel1.prev()"
                                         class="amp-carousel-button amp-carousel-button-prev"
                                         aria-label="Previous slide"></button>
-                                    <button on="tap:carousel1.next()"
+                                    <button on="tap:heroCarousel1.next()"
                                         class="amp-carousel-button amp-carousel-button-next"
                                         aria-label="Next slide"></button>
                                 </amp-carousel>
                             </div>
-                            <div class="hero-tab-content" [hidden]="tabCarousel.active != 'tab2'" hidden>
-                                <amp-carousel id="carousel2" width="800" height="450" layout="responsive" type="slides"
-                                    loop autoplay delay="5000">
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-etais-metalliques-neufs-6-m-800x450.webp?alt=media&token=50eb4107-37e9-450d-80cb-e76574eac211"
-                                            alt="Étais métalliques neufs pour la construction" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Étais Métalliques Neufs</h3>
-                                            <p class="slide-price">15,000 Fcfa / pièce</p>
-                                            <a href="payment.html?name=%C3%89tais%20M%C3%A9talliques%20Neufs&price=15,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-tricycle-cargo-neuf-achat-800x450.webp?alt=media&token=5321d398-6108-4924-80ad-0caa16048eee"
-                                            alt="Tricycle cargo neuf pour le transport de marchandises"
-                                            layout="responsive" width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Tricycle Cargo Neuf</h3>
-                                            <p class="slide-price">850,000 Fcfa</p>
-                                            <a href="payment.html?name=Tricycle%20Cargo%20Neuf&price=850,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-etancheite-chappe-couverture-toiture-800x450.webp?alt=media&token=5a01b57d-2cd3-4a8a-9522-da9992f61a34"
-                                            alt="Produits d'étanchéité pour toiture et chappe" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Produits d'Étanchéité Toiture</h3>
-                                            <p class="slide-price">25,000 Fcfa / rouleau</p>
-                                            <a href="payment.html?name=Produits%20d%27%C3%89tanch%C3%A9it%C3%A9%20Toiture&price=25,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <button on="tap:carousel2.prev()"
+
+                            <!-- Panneau 2 : Articles Neufs (tab2) -->
+                            <div id="heroTabPanel2" role="tabpanel" aria-labelledby="heroTab2" option>
+                                <amp-carousel id="heroCarousel2" width="800" height="450" layout="responsive"
+                                    type="slides" loop autoplay delay="5000">
+                                    <amp-list layout="fixed-height" height="450"
+                                        [src]="heroSlides.items ? heroSlides.items.filter(s => s.tab == 'tab2') : []"
+                                        items="." class="slides-list">
+                                        <template type="amp-mustache">
+                                            <div class="carousel-slide-container">
+                                                <amp-img src="{{imageUrl}}" alt="{{title}}" layout="responsive"
+                                                    width="{{imgWidth}}" height="{{imgHeight}}"></amp-img>
+                                                <div class="slide-overlay">
+                                                    <h3 class="slide-title">{{title}}</h3>
+                                                    <p class="slide-price">{{price}} {{currency}}</p>
+                                                    <a href="{{payment_link}}" class="slide-cta">Voir l'offre</a>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </amp-list>
+                                    <button on="tap:heroCarousel2.prev()"
                                         class="amp-carousel-button amp-carousel-button-prev"
                                         aria-label="Previous slide"></button>
-                                    <button on="tap:carousel2.next()"
+                                    <button on="tap:heroCarousel2.next()"
                                         class="amp-carousel-button amp-carousel-button-next"
                                         aria-label="Next slide"></button>
                                 </amp-carousel>
                             </div>
-                            <div class="hero-tab-content" [hidden]="tabCarousel.active != 'tab3'" hidden>
-                                <amp-carousel id="carousel3" width="800" height="450" layout="responsive" type="slides"
-                                    loop autoplay delay="5000">
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-compacteur-d-occasion-cat-cs-74-b-800x450.webp?alt=media&token=75b28227-169f-4ea7-98b8-3695ec8ac6be"
-                                            alt="Compacteur d'occasion de marque CAT en vente" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Compacteur d'Occasion CAT</h3>
-                                            <p class="slide-price">15,000,000 Fcfa</p>
-                                            <a href="payment.html?name=Compacteur%20d%27Occasion%20CAT&price=15,000,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-conteneur-frigorifique-40-pieds-second-main1-800x450.webp?alt=media&token=b21b3e1d-5fd6-4cfb-b1c9-d4efdfb28781"
-                                            alt="Conteneur frigorifique de 40 pieds d'occasion" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Conteneur Frigorifique 40 pieds</h3>
-                                            <p class="slide-price">2,500,000 Fcfa</p>
-                                            <a href="payment.html?name=Conteneur%20Frigorifique%2040%20pieds&price=2,500,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-slide-container">
-                                        <amp-img
-                                            src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/abidjansolution-futs-1000-litres-et-citerne-et-futs-20-l-litres-800x450.webp?alt=media&token=48531ccf-c23b-4cf0-8d4d-f60f3d012171"
-                                            alt="Citernes et fûts de 1000 litres de seconde main" layout="responsive"
-                                            width="800" height="450"></amp-img>
-                                        <div class="slide-overlay">
-                                            <h3 class="slide-title">Citerne 1000 Litres</h3>
-                                            <p class="slide-price">150,000 Fcfa</p>
-                                            <a href="payment.html?name=Citerne%201000%20Litres&price=150,000Fcfa"
-                                                class="slide-cta">Voir l'offre</a>
-                                        </div>
-                                    </div>
-                                    <button on="tap:carousel3.prev()"
+
+                            <!-- Panneau 3 : Articles Seconde Main (tab3) -->
+                            <div id="heroTabPanel3" role="tabpanel" aria-labelledby="heroTab3" option>
+                                <amp-carousel id="heroCarousel3" width="800" height="450" layout="responsive"
+                                    type="slides" loop autoplay delay="5000">
+                                    <amp-list layout="fixed-height" height="450"
+                                        [src]="heroSlides.items ? heroSlides.items.filter(s => s.tab == 'tab3') : []"
+                                        items="." class="slides-list">
+                                        <template type="amp-mustache">
+                                            <div class="carousel-slide-container">
+                                                <amp-img src="{{imageUrl}}" alt="{{title}}" layout="responsive"
+                                                    width="{{imgWidth}}" height="{{imgHeight}}"></amp-img>
+                                                <div class="slide-overlay">
+                                                    <h3 class="slide-title">{{title}}</h3>
+                                                    <p class="slide-price">{{price}} {{currency}}</p>
+                                                    <a href="{{payment_link}}" class="slide-cta">Voir l'offre</a>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </amp-list>
+                                    <button on="tap:heroCarousel3.prev()"
                                         class="amp-carousel-button amp-carousel-button-prev"
                                         aria-label="Previous slide"></button>
-                                    <button on="tap:carousel3.next()"
+                                    <button on="tap:heroCarousel3.next()"
                                         class="amp-carousel-button amp-carousel-button-next"
                                         aria-label="Next slide"></button>
                                 </amp-carousel>
                             </div>
-                        </div>
+                        </amp-selector>
                     </div>
                 </div>
-
 
                 <aside class="hero-info-panel">
                     <a href="cout-en-detail-location-service-traiteur-pour-ceremonie.html" class="info-item"><svg
@@ -2191,134 +2218,82 @@
     </main>
 
     <footer class="footer">
-        <div class="container-grid">
-            <div class="footer-about">
-                <h3 class="footer-title">Abidjan Solution</h3>
-                <p>Votre plateforme de confiance pour l'achat et la location de machines, équipements et services en
-                    Afrique de l'Ouest.</p>
-                <ul class="footer-contact-info">
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        <span>Siège social : Abidjan, Cocody Riviera 3 Lycée Francais Blaise Pascal. Site Web:
-                            www.abidjansolution.biz</span>
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81 .7A2 2 0 0 1 22 16.92z">
-                            </path>
-                        </svg>
-                        <span>EKKS Entreprise Sarl. 18 BP 1786 Abidjan 18 Tel : 07 07 28 34 05
-                            .RC:CI-ABJ-2019-B-21896</span>
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                        </svg>
-                        <span>CC : 1973347 D.Banque: UBA. N°CPTE: 105340002263. Email : ekks@abidjansolution.biz</span>
-                    </li>
-                </ul>
+        <!-- SECTION CONFIGURATION SITE (PRE-FOOTER) -->
+        <section class="site-info-section">
+            <div class="container">
+                <amp-list layout="fixed-height" height="400"
+                    src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=siteconfig"
+                    items="items" single-item>
+                    <template type="amp-mustache">
+                        <div class="info-grid">
+                            <div class="info-col">
+                                <amp-img src="{{assets.logoUrl}}" width="160" height="50" layout="fixed"
+                                    alt="Logo"></amp-img>
+                                <p style="margin-top:15px"><strong>{{companyInfo.fullName}}</strong></p>
+                                <p>{{projectName}} - La Place de Marché de Confiance en Côte d'Ivoire.</p>
+                                <div class="social-links">
+                                    <a href="{{socialLinks.facebook}}" target="_blank">Facebook</a>
+                                    <a href="{{socialLinks.tiktok}}" target="_blank">TikTok</a>
+                                    <a href="{{socialLinks.instagram}}" target="_blank">Instagram</a>
+                                    <a href="{{socialLinks.whatsapp}}" target="_blank"
+                                        style="background:var(--main-green); color:white; border:none">WhatsApp</a>
+                                </div>
+                            </div>
+                            <div class="info-col">
+                                <h4>Contact & Localisation</h4>
+                                <p>📍 {{contact.address}}</p>
+                                <p>✉️ {{contact.email}}</p>
+                                <p>📞 {{contact.phone}}</p>
+                                <p>📦 {{companyInfo.poBox}}</p>
+                            </div>
+                            <div class="info-col">
+                                <h4>Identité Juridique</h4>
+                                <p><strong>RCCM :</strong> {{companyInfo.rcNumber}}</p>
+                                <p><strong>Compte Contrib :</strong> {{companyInfo.ccNumber}}</p>
+                                <p><strong>Banque :</strong> {{companyInfo.bank}}</p>
+                                <p><strong>N° Compte :</strong> {{companyInfo.accountNumber}}</p>
+                            </div>
+                        </div>
+                    </template>
+                    <div placeholder>
+                        <p style="color:white; text-align:center;">Chargement des informations...</p>
+                    </div>
+                    <div fallback>
+                        <p style="color:white; text-align:center;">Impossible de charger les informations.</p>
+                    </div>
+                </amp-list>
             </div>
-            <div>
-                <h3 class="footer-title">Catégories</h3>
-                <ul>
-                    <li><a href="#fabrication-locale">Fabrication Locale</a></li>
-                    <li><a href="#produits-neufs">Produits Neufs</a></li>
-                    <li><a href="#articles-occasion">Articles d'Occasion</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#quincaillerie">Quincaillerie</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="footer-title">Liens Utiles</h3>
-                <ul>
-                    <li><a href="sitemap2.html">Plan du site</a></li>
-                    <li><a href="a-propos-de-nous-ekks-entreprise.html">À propos de nous</a></li>
-                    <li><a href="conditions-d-utilisation-abidjansolution.html">Conditions d'utilisation</a></li>
-                    <li><a href="abidjansolution-biz-regles-relatives-au-consentement-de-l-utilisateur.html">Politique
-                            de confidentialité</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="sell.html">Devenir vendeur</a></li>
-                    <li><a href="nos.html">Contactez-nous</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="pt-8 mb-0 border-y border-gray-700">
-            <h3 class="text-xl font-bold text-white mb-6 text-center">Ils nous ont fait Confiance</h3>
-            <div class="partner-logo-wrapper">
-                <div class="partner-logo-scroller">
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/fao-cote-d-ivoire-abidjansolution.webp?alt=media&token=aa3e79bb-3283-4dca-8270-031c9cfb81d8"
-                        alt="FAO Côte d'Ivoire" width="74" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/care-cote-d-ivoire-abidjansolution.webp?alt=media&token=c75c2c8d-fd8f-4635-838d-4105edd7ae6b"
-                        alt="CARE Côte d'Ivoire" width="60" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/bollore-agl-cote-d-ivoire-abidjansolution.webp?alt=media&token=b1c34be6-4080-4a7a-9ca6-f6e2eedca2a8"
-                        alt="Bolloré / AGL Côte d'Ivoire" width="158" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/saph-siph-cote-d-ivoire-abidjansolution.webp?alt=media&token=f1bc329c-9626-4d47-a022-115ff9757300"
-                        alt="SAPH / SIPH Côte d'Ivoire" width="76" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ong-rikolto-international-cote-d-ivoire-abidjansolution.webp?alt=media&token=6af87a28-5130-4409-8ae1-34c83b3e1b20"
-                        alt="Rikoloto International" width="223" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ambassade-suisse-cote-d-ivoire-abidjansolution.webp?alt=media&token=efc29f80-c3b2-41a5-9755-be35650f13d9"
-                        alt="Ambassade Suisse" width="75" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/entrepreneurs-du-monde-cote-d-ivoire-abidjansolution.webp?alt=media&token=a76ad10b-0aae-40aa-8e43-f59d718b0ecf"
-                        alt="Entrepreneurs du Monde" width="245" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/chambre-de-commerce-et-d-insdustrie-cote-d-ivoire-abidjansolution.webp?alt=media&token=6e3cb3bd-6348-4adb-9775-ea96b3cde1f4"
-                        alt="Chambre de Commerce et d’Industrie de Côte d’Ivoire" width="363" height="75"
-                        layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/setao-bouygues-construction-abidjansolution.webp?alt=media&token=a956212d-c424-4fa1-ac4c-6eee211c56b5"
-                        alt="SETAO filiale BOUYGUES Construction" width="143" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/agrisud-international-cote-divoire.webp?alt=media&token=9c087933-9df1-4e95-8531-4e5e8ee11b37"
-                        alt="AGRISUD International Cote d'Ivoire" width="77" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/fao-cote-d-ivoire-abidjansolution.webp?alt=media&token=aa3e79bb-3283-4dca-8270-031c9cfb81d8"
-                        alt="FAO Côte d'Ivoire" width="74" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/care-cote-d-ivoire-abidjansolution.webp?alt=media&token=c75c2c8d-fd8f-4635-838d-4105edd7ae6b"
-                        alt="CARE Côte d'Ivoire" width="60" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/bollore-agl-cote-d-ivoire-abidjansolution.webp?alt=media&token=b1c34be6-4080-4a7a-9ca6-f6e2eedca2a8"
-                        alt="Bolloré / AGL Côte d'Ivoire" width="158" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/saph-siph-cote-d-ivoire-abidjansolution.webp?alt=media&token=f1bc329c-9626-4d47-a022-115ff9757300"
-                        alt="SAPH / SIPH Côte d'Ivoire" width="76" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ong-rikolto-international-cote-d-ivoire-abidjansolution.webp?alt=media&token=6af87a28-5130-4409-8ae1-34c83b3e1b20"
-                        alt="Rikoloto International" width="223" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/ambassade-suisse-cote-d-ivoire-abidjansolution.webp?alt=media&token=efc29f80-c3b2-41a5-9755-be35650f13d9"
-                        alt="Ambassade Suisse" width="75" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/entrepreneurs-du-monde-cote-d-ivoire-abidjansolution.webp?alt=media&token=a76ad10b-0aae-40aa-8e43-f59d718b0ecf"
-                        alt="Entrepreneurs du Monde" width="245" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/chambre-de-commerce-et-d-insdustrie-cote-d-ivoire-abidjansolution.webp?alt=media&token=6e3cb3bd-6348-4adb-9775-ea96b3cde1f4"
-                        alt="Chambre de Commerce et d’Industrie de Côte d’Ivoire" width="363" height="75"
-                        layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/setao-bouygues-construction-abidjansolution.webp?alt=media&token=a956212d-c424-4fa1-ac4c-6eee211c56b5"
-                        alt="SETAO filiale BOUYGUES Construction" width="143" height="75" layout="fixed"></amp-img>
-                    <amp-img
-                        src="https://firebasestorage.googleapis.com/v0/b/abidjansolution0006.appspot.com/o/agrisud-international-cote-divoire.webp?alt=media&token=9c087933-9df1-4e95-8531-4e5e8ee11b37"
-                        alt="AGRISUD International Cote d'Ivoire" width="77" height="75" layout="fixed"></amp-img>
+        </section>
+        <!-- SECTION PARTENAIRES DYNAMIQUE -->
+        <section class="partners-section">
+            <div class="container">
+                <h3 class="partners-title">Ils nous font Confiance</h3>
+                <div class="partner-logo-wrapper">
+                    <amp-list layout="fixed-height" height="80"
+                        src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=partners"
+                        items="items">
+                        <template type="amp-mustache">
+                            <div class="partner-logo-scroller">
+                                {{#items}}
+                                <amp-img src="{{logoUrl}}" width="{{width}}" height="{{height}}" layout="fixed"
+                                    alt="{{name}}"></amp-img>
+                                {{/items}}
+                                {{#items}}
+                                <amp-img src="{{logoUrl}}" width="{{width}}" height="{{height}}" layout="fixed"
+                                    alt="{{name}}"></amp-img>
+                                {{/items}}
+                            </div>
+                        </template>
+                        <div placeholder>
+                            <p style="color:white; text-align:center;">Chargement des partenaires...</p>
+                        </div>
+                        <div fallback>
+                            <p style="color:white; text-align:center;">Impossible de charger les logos.</p>
+                        </div>
+                    </amp-list>
                 </div>
             </div>
-        </div>
+        </section>
         <div class="text-center text-gray-400">
             <div id="postPromptUI" class="privacy-settings">
                 <button on="tap:ConsentManager.prompt()" role="button">Manage privacy settings</button>
