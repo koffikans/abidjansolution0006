@@ -785,7 +785,7 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            scroll-snap-type: x mandatory;
+            scroll-snap-type: x proximity;
         }
 
         .product-list-enhanced::-webkit-scrollbar {
@@ -1450,7 +1450,8 @@
             </ul>
             <div class="sidebar-section-title">NOS CATÉGORIES</div>
             <amp-list layout="fixed-height" height="500"
-                src="https://us-central1-abidjansolution0006.cloudfunctions.net/getCategories" items="items">
+                src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=categories"
+                items="items">
                 <template type="amp-mustache">
                     <ul class="sidebar-menu">
                         <li><a href="shop.html?cat={{name}}"><span>{{icon}}</span> {{name}}</a></li>
