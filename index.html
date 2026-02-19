@@ -740,7 +740,6 @@
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            /* Cache la scrollbar sur Firefox */
             padding: 10px 0;
         }
 
@@ -914,7 +913,7 @@
         /* === GRILLE HORIZONTALE DE PRODUITS === */
         .horizontal-scroll {
             width: 100%;
-            overflow-x: auto;
+            overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
             padding: 5px 0 15px;
             scrollbar-width: none;
@@ -928,7 +927,6 @@
             display: flex;
             gap: 15px;
             width: max-content;
-			height: 340px;
             animation: scroll-articles 40s linear infinite;
         }
 
@@ -952,7 +950,7 @@
             flex: 0 0 900px;
             position: relative;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-			margin-right: 20px;
+            margin-right: 20px;
             scroll-snap-align: start;
         }
 
@@ -1015,190 +1013,196 @@
             display: none;
             /* Masqué pour correspondre au style compact si nécessaire, ou on peut le garder */
         }
-         
-		 /* ADAPTATION MOBILE : On réduit proportionnellement pour que l'image reste 'couchée' */
-@media (max-width: 991px) {
-    .p-card-dual-block {
-        width: 600px;    /* On réduit la largeur totale sur tablette/mobile */
-        flex: 0 0 600px;
-        height: 200px;
-    }
-    .pack-img-side {
-        flex: 0 0 300px; /* L'image passe à 300px mais garde le ratio horizontal */
-        width: 300px;
-        height: 200px;
-    }
-    .p-title-pack { font-size: 18px; }
 
-        /* --- FLÈCHES DE NAVIGATION --- */
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: white;
-            border: 1px solid #ddd;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            z-index: 10;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--main-green);
-            font-size: 20px;
-        }
-
-        .arrow-prev {
-            left: -24px;
-        }
-
-        .arrow-next {
-            right: -24px;
-        }
-
-        /* --- ADAPTATION MOBILE --- */
-        @media (max-width: 950px) {
+        /* ADAPTATION MOBILE : On réduit proportionnellement pour que l'image reste 'couchée' */
+        @media (max-width: 991px) {
             .p-card-dual-block {
+                width: 600px;
+                /* On réduit la largeur totale sur tablette/mobile */
+                flex: 0 0 600px;
+                height: 200px;
+            }
+
+            .pack-img-side {
                 flex: 0 0 300px;
-                flex-direction: column;
-                height: auto;
+                /* L'image passe à 300px mais garde le ratio horizontal */
+                width: 300px;
+                height: 200px;
             }
 
-            .pack-img-side,
-            .pack-content-side {
-                flex: 0 0 auto;
-                width: 100%;
-                height: auto;
+            .p-title-pack {
+                font-size: 18px;
             }
 
-            .pack-content-side {
-                padding: 20px;
-            }
-
+            /* --- FLÈCHES DE NAVIGATION --- */
             .nav-arrow {
-                display: none;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: white;
+                border: 1px solid #ddd;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                z-index: 10;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--main-green);
+                font-size: 20px;
             }
-        }
 
-        /* Footer */
-        .footer {
-            background: var(--main-green);
-            color: white;
-            padding: 40px 15px;
-            margin-top: 20px;
-        }
+            .arrow-prev {
+                left: -24px;
+            }
 
-        .footer .container-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+            .arrow-next {
+                right: -24px;
+            }
 
-        @media (min-width: 768px) {
+            /* --- ADAPTATION MOBILE --- */
+            @media (max-width: 950px) {
+                .p-card-dual-block {
+                    flex: 0 0 300px;
+                    flex-direction: column;
+                    height: auto;
+                }
+
+                .pack-img-side,
+                .pack-content-side {
+                    flex: 0 0 auto;
+                    width: 100%;
+                    height: auto;
+                }
+
+                .pack-content-side {
+                    padding: 20px;
+                }
+
+                .nav-arrow {
+                    display: none;
+                }
+            }
+
+            /* Footer */
+            .footer {
+                background: var(--main-green);
+                color: white;
+                padding: 40px 15px;
+                margin-top: 20px;
+            }
+
             .footer .container-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .footer .container-grid {
-                grid-template-columns: repeat(4, 1fr);
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto;
             }
 
-            .footer-about {
-                grid-column: span 2;
-            }
-        }
-
-        .footer-title {
-            font-size: 18px;
-            color: white;
-            margin: 0 0 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-orange);
-            display: inline-block;
-        }
-
-        .footer ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer a {
-            text-decoration: none;
-            color: #ccc;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
-            color: white;
-        }
-
-        .footer-contact-info li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .footer-contact-info svg {
-            flex-shrink: 0;
-            width: 16px;
-            margin-top: 4px;
-            color: var(--accent-orange);
-        }
-
-        /* Partners */
-        .partner-logo-wrapper {
-            overflow: hidden;
-            padding: 0.25rem 0;
-            position: relative;
-            width: 100%;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
+            @media (min-width: 768px) {
+                .footer .container-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
             }
 
-            100% {
-                transform: translateX(-50%);
-            }
-        }
+            @media (min-width: 992px) {
+                .footer .container-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                }
 
-        .partner-logo-scroller {
-            display: flex;
-            width: fit-content;
-            animation: scroll 60s linear infinite;
-        }
-
-        .partner-logo-scroller amp-img {
-            margin: 0 40px;
-            opacity: 1;
-            transition: transform 0.3s ease;
-            object-fit: contain;
-        }
-
-        /* Zone à créer en fin de style custom */
-        @keyframes scroll-articles {
-            0% {
-                transform: translateX(0);
+                .footer-about {
+                    grid-column: span 2;
+                }
             }
 
-            100% {
-                transform: translateX(-50%);
+            .footer-title {
+                font-size: 18px;
+                color: white;
+                margin: 0 0 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid var(--accent-orange);
+                display: inline-block;
             }
 
-            /* Défilement de la moitié de la largeur */
-        }
+            .footer ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .footer ul li {
+                margin-bottom: 10px;
+            }
+
+            .footer a {
+                text-decoration: none;
+                color: #ccc;
+                transition: color 0.2s;
+            }
+
+            .footer a:hover {
+                color: white;
+            }
+
+            .footer-contact-info li {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .footer-contact-info svg {
+                flex-shrink: 0;
+                width: 16px;
+                margin-top: 4px;
+                color: var(--accent-orange);
+            }
+
+            /* Partners */
+            .partner-logo-wrapper {
+                overflow: hidden;
+                padding: 0.25rem 0;
+                position: relative;
+                width: 100%;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .partner-logo-scroller {
+                display: flex;
+                width: fit-content;
+                animation: scroll 60s linear infinite;
+            }
+
+            .partner-logo-scroller amp-img {
+                margin: 0 40px;
+                opacity: 1;
+                transition: transform 0.3s ease;
+                object-fit: contain;
+            }
+
+            /* Zone à créer en fin de style custom */
+            @keyframes scroll-articles {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(-50%);
+                }
+
+                /* Défilement de la moitié de la largeur */
+            }
     </style>
     <script type="application/ld+json">
 {
