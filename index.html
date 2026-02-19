@@ -911,21 +911,6 @@
         }
 
 
-        /* --- TITRES SECTIONS --- */
-        .section-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin: 25px 0 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .section-title a {
-            font-size: 13px;
-            color: var(--main-green);
-        }
-
         /* === GRILLE HORIZONTALE DE PRODUITS === */
         .horizontal-scroll {
             width: 100%;
@@ -942,6 +927,12 @@
         .product-list-horizontal-packs div[role="list"] {
             display: flex;
             gap: 15px;
+            width: max-content;
+            animation: scroll-articles 40s linear infinite;
+        }
+
+        .product-list-horizontal-packs div[role="list"]:hover {
+            animation-play-state: paused;
         }
 
         /* LA CARTE (DISPOSITION HORIZONTALE) */
@@ -953,9 +944,9 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
-            width: 340px;
+            width: 550px;
             /* Largeur pour mobile */
-            height: 160px;
+            height: 300px;
             /* Hauteur fixe compacte */
             flex: 0 0 340px;
             position: relative;
@@ -965,10 +956,10 @@
 
         /* Bloc Image Gauche */
         .pack-img-side {
-            flex: 0 0 130px;
+            flex: 0 0 450px;
             /* Largeur fixe image */
-            width: 130px;
-            height: 160px;
+            width: 450px;
+            height: 300px;
             position: relative;
             background: #f8f8f8;
         }
@@ -985,7 +976,6 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
 
         .p-title-pack {
             font-size: 14px;
@@ -1023,6 +1013,7 @@
             /* Masqué pour correspondre au style compact si nécessaire, ou on peut le garder */
         }
 
+
         /* --- FLÈCHES DE NAVIGATION --- */
         .nav-arrow {
             position: absolute;
@@ -1051,22 +1042,27 @@
             right: -24px;
         }
 
-        /* Responsive Desktop */
-        @media (min-width: 992px) {
+        /* --- ADAPTATION MOBILE --- */
+        @media (max-width: 950px) {
             .p-card-dual-block {
-                width: 420px;
-                flex: 0 0 420px;
-                height: 180px;
+                flex: 0 0 300px;
+                flex-direction: column;
+                height: auto;
             }
 
-            .pack-img-side {
-                flex: 0 0 160px;
-                width: 160px;
-                height: 180px;
+            .pack-img-side,
+            .pack-content-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: auto;
             }
 
-            .p-title-pack {
-                font-size: 16px;
+            .pack-content-side {
+                padding: 20px;
+            }
+
+            .nav-arrow {
+                display: none;
             }
         }
 
@@ -1862,13 +1858,13 @@
                 <div class="horizontal-scroll" id="packs-list">
                     <amp-list class="product-list-horizontal-packs"
                         src="https://us-central1-abidjansolution0006.cloudfunctions.net/getProducts?category=packs"
-                        layout="fixed-height" height="200" items="items">
+                        layout="fixed-height" height="350" items="items">
                         <template type="amp-mustache">
                             <div class="p-card-dual-block">
                                 <div class="p-badge">{{status_label}}</div>
 
                                 <div class="pack-img-side">
-                                    <amp-img src="{{imageUrl}}" width="130" height="160" layout="responsive"
+                                    <amp-img src="{{imageUrl}}" width="450" height="300" layout="fill"
                                         alt="{{name}}"></amp-img>
                                 </div>
 
